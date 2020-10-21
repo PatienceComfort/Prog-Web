@@ -1,0 +1,16 @@
+#signInPage {
+  height: auto;
+  width: auto;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right:auto;
+  position: absolute;
+  left:50%;
+  top: 50%;
+
+  background-color : grey;
+  border-style: inset;
+  padding:80px;
+}
+
+#
