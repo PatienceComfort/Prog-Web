@@ -1,16 +1,41 @@
-#signInPage {
-  height: auto;
-  width: auto;
-  vertical-align: middle;
-  margin-left: auto;
-  margin-right:auto;
-  position: absolute;
-  left:50%;
-  top: 50%;
-
-  background-color : grey;
-  border-style: inset;
-  padding:80px;
+body{
+  margin:0;
+  padding:0;
+  background-image: url("imageb.jpg");
+  background-size:cover;
+}
+header{
+  font-family:Trattatello, fantasy;
 }
 
-#
+.SignInForm{
+  width: 320px;
+  height: 420px;
+  background-color: transparent;
+  border-radius: 10%;
+
+  position: absolute;
+  top: 20%;
+  left: 40%;
+}
+
+.formulaire{
+  padding: 0;
+  position: absolute;
+  top: 30%;
+  left: 25%;
+}
+
+#emailOrUsername{
+  padding-top:10px;
+  padding-bottom: 10px;
+}
+
+
+
+#submitBotton{
+  position: absolute;
+  right: 0;
+  padding-top: 10px;
+
+}
