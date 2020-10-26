@@ -3,12 +3,18 @@
     <head>
         <meta charset="utf-8" />
         <title>Ceci est une page HTML de test</title>
+        <link rel="stylesheet" href="test2.css">
     </head>
     <body>
-        <div id = "signUpPage">
-          <input id = "SignUpBotton" type="button" onclick="location.href=" value="Sign Up" />
-          <input id = "SignInBotton" type="button" onclick="location.href=" value="Sign In" />
-          <form> <!--add action = "action.php" method = "get" -->
+      <header>
+        <h1>GENEGATE</h1>
+      </header>
+        <div class = "signUpPage">
+          <div class = "formulaire">
+          <input id = "SignUpBotton" type="button" onclick="location.href=" value="Inscription" />
+          <button onclick="location.href='test.html'" type="button">
+   Connection</button>
+          <form><!--add action = "action.php" method = "get" -->
               <input type="text" id="FirstName" name="FirstName" placeholder="First Name">
               <input type="text" id="LastName" name="LastName" placeholder="Last Name"><br>
               <input type="text" id="Email" name="Email" placeholder="Email address"><br>
@@ -22,8 +28,9 @@
               <label for="annotateur">Annotateur</label><br>
               <input type="radio" id="validateur" name="validateur" value ="Validateur">
               <label for="validateur">Validateur</label><br>
-              <input type="submit" id = "signUp" value = "Sign up">
+              <input type="submit" id = "signUp" value = "S'inscrire">
           </form>
         </div>
+      </div>
     </body>
 </html>
