@@ -25,3 +25,6 @@ A faire:
 - php: script de recupération de données 
 - php: script de liaison à la base de donnees
 - javascript ou html: bouton (onclick) vers page de sign up (Enregistrement)
+
+Pour les pages sign up et sign in, image de fond utilisé: https://fr.freepik.com/vecteurs-premium/fond-blanc-adn-vert_2371264.htm
+
