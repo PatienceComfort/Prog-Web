@@ -3,7 +3,7 @@ body{
     padding:0;
 }
 header{
-    font-family:Trattatello, fantasy;
+    font-family:Georgia, serif;
 }
 table{
     margin-left: auto;
@@ -30,5 +30,10 @@ tr:nth-child(odd){
     position: absolute;
     left: 25%;
     padding-top: 10px;
-  
-  }
+}
+
+#Retour{
+    position: absolute;
+    right: 25%;
+    padding-top: 10px;
+}
