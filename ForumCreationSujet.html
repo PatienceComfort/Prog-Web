@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Ceci est une page HTML de test pour la creation de sujet</title>
+        <link rel="stylesheet" href="ForumSujets.css">
+    </head>
+    <body>
+        <header>
+            <h1>GENEGATE - Créer un sujet</h1>
+        </header>
+        <div id = "FormulaireForum">
+            <form><!--add action = "action.php" method = "get" -->
+                <label for="Title">Titre du sujet:</label>
+                <input type="text" id="Title" name="Titre" placeholder="Titre..."><br><br>
+                <!--<input type="textarea" id="Message" name="Message" placeholder="Message"><br> -->
+                <label for="LongMessage">Votre message:</label>
+                <textarea id="LongMessage" name="LongMessage" rows="10" cols="50"></textarea><br><br>
+                <label for="participants">Choisir les participants:</label>
+                <select name="participants" id="participants" multiple size="3">
+                    <optgroup label="Annotateur">
+                        <option value="michel">Michel</option>
+                        <option value="louise">Louise</option>
+                    </optgroup>
+                    <optgroup label="Validateur ">
+                        <option value="jean">Jean</option>
+                        <option value="adam">Adam</option>
+                    </optgroup>
+                </select>
+                <input type="submit" id = "Poster" value = "Poster">
+            </form>
+        </div>
+    </body>
+</html>

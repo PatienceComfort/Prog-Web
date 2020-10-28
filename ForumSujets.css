@@ -37,3 +37,10 @@ tr:nth-child(odd){
     right: 25%;
     padding-top: 10px;
 }
+
+#FormulaireForum{
+    position: absolute;
+    right: 25%;
+    padding-top: 10px;
+    background-color: #8BC34A;
+}
