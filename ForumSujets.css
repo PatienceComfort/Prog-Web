@@ -44,3 +44,10 @@ tr:nth-child(odd){
     padding-top: 10px;
     background-color: #8BC34A;
 }
+
+a {
+	color : gray;
+	text-decoration-line: underline;
+        font-style: italic;
+	vertical-align: left;
+}
