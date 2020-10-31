@@ -53,12 +53,15 @@ td:nth-child(3) {
 }
 
 a {
-        position: absolute;
         color : gray;
+        position: absolute;
 	text-decoration-line: underline;
         font-style: italic;
-	top : 120%
-}        
+	text-align : bottom;
+        left : 10%;
+        top : 120%;
+        
+}     
 
 input {
 	background-color :#505050;
