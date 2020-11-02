@@ -35,20 +35,18 @@ td{
 
 
 th:first-child {
-	background: #A7D489;
+	background: #8BC34A;
 	color: white;
 	font-weight: bold;
         border: 1px solid black;
 }
 td:first-child { 	
 	text-decoration-line: underline;
-	background: #A7D489;
+	background: #8BC34A;
 	color: white;
 	font-weight: bold;
         border: 1px solid black; 
 }
-
-
 
 #elem1
 { 
@@ -79,7 +77,7 @@ td:first-child {
  position: absolute;
  top: 58% ;
  right: 5%;
- background: #A7D489;
+ background: #8BC34A;
  padding : 50px 80px 50px 80px;
  border-radius: 15px;
  border: 1px solid #018FD1 ;

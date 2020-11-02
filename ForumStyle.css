@@ -1,0 +1,80 @@
+/*Elements generaux*/
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, serif;
+}
+header{
+    font-family:Arial, Helvetica, serif;
+}
+p {
+    margin-left: 30px;
+    color:  solid black;
+    font-size : 30px;
+    font-weight: bold;
+    
+}
+/*Mise en forme des tableaux*/
+table{
+    margin: auto;
+    border-radius: 30px;
+    border-collapse: collapse; /* Les bordures du tableau sont collées (plus joli) */
+}
+th{
+    color: 1px solid black;
+    border: 1px solid black;
+    padding: 10px;
+    vertical-align: top;
+}
+td{
+    border: 1px solid black;
+    padding: 10px;
+    vertical-align: top;
+}
+/*tr:nth-child(odd){
+    background-color: #8BC34A ;
+}*/
+th:first-child {
+	background: #8BC34A;
+	color: white;
+	font-weight: bold;
+        border: 1px solid black;
+}
+td:first-child { 	
+	text-decoration-line: underline;
+	background: #8BC34A;
+	color: white;
+	font-weight: bold;
+        border: 1px solid black; 
+}
+/*Sections particulieres*/
+#Add{
+    position: absolute;
+    left: 25%;
+    padding-top: 10px;
+}
+
+#Retour{
+    position: absolute;
+    right: 25%;
+    bottom: 10%;
+    padding-top: 10px;
+}
+
+#FormulaireForum{
+    position: absolute;
+    right: 25%;
+    padding-top: 10px;
+    background-color: #8BC34A;
+}
+
+/*Lien*/
+a {
+    color : gray;
+    /*position: absolute;*/   /*Attention quand liens dans un tableau*/
+    text-decoration-line: underline;
+    font-style: italic;
+    text-align : bottom;
+    /*left : 10%;*/
+    /*top : 120%;*/
+}
