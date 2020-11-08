@@ -38,6 +38,14 @@ FROM sequences
 WHERE seqNt LIKE "%ATAAACCG%"
   AND fonction= "nuclease";
 
+-- Recherche d’information sur une séquence nucléotidique d'un genome particulier:
+SELECT seqNt
+FROM sequences, genome
+WHERE sequences.idGenome = genome.idGenome
+  AND fonction= "nuclease"
+  AND seqNt LIKE "%ATAAACCG%"
+  AND genome.genre = "Escherichia"
+
 -- Recherche d’information sur le génome  de E.Coli :
 SELECT *
 FROM genome
