@@ -14,7 +14,7 @@ INSERT INTO genome VALUES ('1CECOLI','Escherechia','Coli', 'K12','NULL',4.6);
 
 
 
--- # Requetes SQL 
+-- # Requetes SQL --> a mettre dans un autre fichier ?
 
 SELECT email
 FROM utilisateur 
