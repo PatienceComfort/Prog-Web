@@ -22,7 +22,7 @@ CREATE TABLE genome(
 	idGenome VARCHAR(20),
 	genre VARCHAR(20) NOT NULL,
 	espece VARCHAR(20) NOT NULL,
-	souche VARCHAR(20) NOT NULL,
+	souche VARCHAR(20),
 	genomeComplet TEXT,
 	taille int,
 	PRIMARY KEY (idGenome)
@@ -34,7 +34,7 @@ CREATE TABLE sequence(
 	nomGene VARCHAR(20),
 	nomProt VARCHAR(20),
 	fonction  VARCHAR(100),
-	seqNt TEXT,    -- # on a seqNt et génomeComplet, peut etre enlever l’un des deux ?
+	seqNt TEXT,
 	seqProt TEXT,
 	pos_debut int,
 	pos_fin int,
@@ -52,17 +52,17 @@ CREATE TABLE Sujet(
 	emailAnnot VARCHAR(100) NOT NULL UNIQUE,
 	title VARCHAR(100) NOT NULL,
 	PRIMARY KEY (sujetid), 
-	CONSTRAINT fgseq FOREIGN KEY  (emailAnnot) REFERENCES utilisateur (email)
+	CONSTRAINT fksuj FOREIGN KEY  (emailAnnot) REFERENCES utilisateur (email)
 );
 
 --# Création de la relation Forum
 CREATE TABLE Forum (
 	idSujet serial,
 	sujet VARCHAR(100) NOT NULL,
-	date timestamp,
+	dateCreation timestamp,
 	emailAnnot VARCHAR(100),
 	PRIMARY KEY (idSujet),
-	CONSTRAINT fgseq FOREIGN KEY (emailAnnot) REFERENCES utilisateur(email)
+	CONSTRAINT fkforum FOREIGN KEY (emailAnnot) REFERENCES utilisateur(email)
 );
 
 --# Création de la relation Réponse
@@ -70,11 +70,11 @@ CREATE TABLE reponse(
 	reponseid serial,
 	emailAnnot  VARCHAR(100),
 	response  VARCHAR(250) NOT NULL,
-	date  timestamp,
+	dateReponse  timestamp,
 	idSujet  int,
 	PRIMARY KEY (reponseid), 
-	CONSTRAINT frseq FOREIGN KEY  (emailAnnot) REFERENCES utilisateur (email),
-	CONSTRAINT fidseq FOREIGN KEY  (idSujet) REFERENCES Forum(idSujet)
+	CONSTRAINT fkrep1 FOREIGN KEY  (emailAnnot) REFERENCES utilisateur (email),
+	CONSTRAINT fkrep2 FOREIGN KEY  (idSujet) REFERENCES Forum(idSujet)
 );
 
 --# Création de la relation Annotation
@@ -84,11 +84,12 @@ CREATE TABLE Annotation (
 	emailAnnot  VARCHAR(100),
 	emailValid1  VARCHAR(100),
 	emailValid2  VARCHAR(100),
+	commentaire TEXT,
 	PRIMARY KEY (numAnnot), 
-	CONSTRAINT fqseq FOREIGN KEY  (idSeq) REFERENCES sequence (idSeq),
-	CONSTRAINT frseq FOREIGN KEY  (emailAnnot) REFERENCES utilisateur (email),
-	CONSTRAINT ftseq FOREIGN KEY  (emailValid1) REFERENCES utilisateur (email),
-	CONSTRAINT fsseq FOREIGN KEY  (emailValid2) REFERENCES utilisateur (email)
+	CONSTRAINT fkannot1 FOREIGN KEY  (idSeq) REFERENCES sequence (idSeq),
+	CONSTRAINT fkannot2 FOREIGN KEY  (emailAnnot) REFERENCES utilisateur (email),
+	CONSTRAINT fkannot3 FOREIGN KEY  (emailValid1) REFERENCES utilisateur (email),
+	CONSTRAINT fkannot4 FOREIGN KEY  (emailValid2) REFERENCES utilisateur (email)
 );
 
 
