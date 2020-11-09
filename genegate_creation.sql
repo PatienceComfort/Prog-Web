@@ -2,9 +2,12 @@ DROP SCHEMA genegate CASCADE;
 CREATE SCHEMA genegate;
 SET SCHEMA 'genegate';
 
+--UTILISATEUR
+--------------
+
 -- #Création de la relation
 CREATE TABLE utilisateur(
-	idUtilisateur serial,
+	--idUtilisateur serial,
 	email VARCHAR(100) NOT NULL UNIQUE  CHECK (email ~* '[a-z0-9]*@[a-z0-9.]*'),
 	username VARCHAR(20) NOT NULL UNIQUE,
 	mdp VARCHAR(20) NOT NULL CHECK (length(mdp) > 7),
@@ -16,6 +19,9 @@ CREATE TABLE utilisateur(
 	validation_compte BOOLEAN,
 	PRIMARY KEY (idUtilisateur)
 );
+
+--GENOME ET SEQUENCE
+---------------------
 
 -- #Creation de la relation genome
 CREATE TABLE genome(
@@ -46,17 +52,11 @@ CREATE TABLE transcrit(
 	CONSTRAINT fkseq FOREIGN KEY  (idGenome) REFERENCES genome (idGenome)
 );
 
---# Création de la relation Sujet 
-CREATE TABLE Sujet(
-	sujetid  serial,
-	emailAnnot VARCHAR(100) NOT NULL UNIQUE,
-	title VARCHAR(100) NOT NULL,
-	PRIMARY KEY (sujetid), 
-	CONSTRAINT fksuj FOREIGN KEY  (emailAnnot) REFERENCES utilisateur (email)
-);
+--FORUM
+-------
 
 --# Création de la relation Forum
-CREATE TABLE Forum (
+CREATE TABLE forum (
 	idSujet serial,
 	sujet VARCHAR(100) NOT NULL UNIQUE,
 	dateCreation timestamp,
@@ -76,6 +76,18 @@ CREATE TABLE reponse(
 	CONSTRAINT fkrep1 FOREIGN KEY  (emailAnnot) REFERENCES utilisateur (email),
 	CONSTRAINT fkrep2 FOREIGN KEY  (idSujet) REFERENCES Forum(idSujet)
 );
+
+--# Creation de la relation Accessujet
+CREATE TABLE accessujet(
+	emailAnnot  VARCHAR(100),
+	idSujet int,
+	CONSTRAINT fkacc1 FOREIGN KEY  (emailAnnot) REFERENCES utilisateur (email),
+	CONSTRAINT fkacc2 FOREIGN KEY  (idSujet) REFERENCES forum (idSujet),
+	PRIMARY KEY (emailAnnot,idSujet)
+);
+
+--ANNOTATIONS
+--------------
 
 --# Création de la relation Annotation --> utiliser les id pas les email, creation d'un statut ici plutot que seq
 CREATE TABLE Annotation ( 

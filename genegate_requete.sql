@@ -7,6 +7,7 @@ FROM utilisateur
 WHERE username = "JeanPierre_2"
   AND statut = TRUE;   --Seuls les utilisateurs valides peuvent acceder au site
 
+--Se connecter
 SELECT utilisateur.mdp --Comme précédemment, mais utilisation de l'email au lieu du nom d'utilisateur
 FROM utilisateur
 WHERE email = ‘X’
@@ -134,8 +135,35 @@ WHERE annotation.idSeq = "EAR4567";
 
 --GESTION DU FORUM
 ------------------
-SELECT *
-FROM 
+
+-- Pour afficher les sujets du forum auxquels a acces un annotateur
+SELECT sujet, emailAnnot, dateCreation
+FROM forum, accessujet
+WHERE forum.idSujet = accessujet.idSujet
+  AND accessujet.idAnnot = "JeanPierre_2";
+
+-- Pour afficher la derniere reponse d'un sujet
+SELECT response, emailAnnot, dateReponse
+FROM reponse
+WHERE idSujet = 10
+  AND dateReponse = (SELECT MIN(dateReponse)
+                      FROM reponse
+                      WHERE idSujet =10);
+
+-- Pour afficher la discussion liee a un sujet
+SELECT response, emailAnnot, dateReponse
+FROM reponse
+WHERE idSujet = 10
+ORDER BY dateReponse ASC;
+
+-- Pour afficher le nom d'un sujet (idSujet =10)
+SELECT sujet
+FROM forum
+WHERE idSujet = 10;
+
+-- Accès au sujet a certains utilisateurs
+INSERT INTO accessujet VALUES ('JeanPierre_2',36);
+
 
 --AUTRE
 ------------------
@@ -144,7 +172,7 @@ SELECT fonction
 FROM sequences, genome
 WHERE sequences.idGenome = genome.idGenome and genre = "Escherichia" and souche ="Coli";
 
--- Trier Les annotateurs ayant annotés le plus de séquences 
+-- Trier les annotateurs ayant annotés le plus de séquences 
 SELECT emailAnnot, COUNT(idSeq)
 FROM  annotation 
 GROUP BY emailAnnot 
