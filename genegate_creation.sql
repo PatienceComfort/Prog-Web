@@ -81,15 +81,15 @@ CREATE TABLE reponse(
 CREATE TABLE Annotation ( 
 	numAnnot int,
 	idSeq VARCHAR(20),
-	emailAnnot  VARCHAR(100),
-	emailValid1  VARCHAR(100),
-	emailValid2  VARCHAR(100),
+	idAnnot  VARCHAR(100),
+	idValid1  VARCHAR(100),
+	idValid2  VARCHAR(100),
 	commentaire TEXT,
 	PRIMARY KEY (numAnnot), 
 	CONSTRAINT fkannot1 FOREIGN KEY  (idSeq) REFERENCES sequence (idSeq),
-	CONSTRAINT fkannot2 FOREIGN KEY  (emailAnnot) REFERENCES utilisateur (email),
-	CONSTRAINT fkannot3 FOREIGN KEY  (emailValid1) REFERENCES utilisateur (email),
-	CONSTRAINT fkannot4 FOREIGN KEY  (emailValid2) REFERENCES utilisateur (email)
+	CONSTRAINT fkannot2 FOREIGN KEY  (idAnnot) REFERENCES utilisateur (idUtilisateur),
+	CONSTRAINT fkannot3 FOREIGN KEY  (idValid1) REFERENCES utilisateur (idUtilisateur),
+	CONSTRAINT fkannot4 FOREIGN KEY  (idValid2) REFERENCES utilisateur (idUtilisateur)
 );
 
 

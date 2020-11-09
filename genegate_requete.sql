@@ -83,13 +83,14 @@ WHERE genre = "Escherichia" and souche ="Coli";
 --GESTION DES ANNOTATIONS
 ---------------------------
 
--- Recherche de séquence annoté par Paul :
+-- Recherche de séquence annoté par un annotateur :
 SELECT seqid
 FROM annotation, utilisateur
-where annotation.emailAnnot = utilisateur.email and utilisateur.prenom ="Paul";
+WHERE annotation.emailAnnot = utilisateur.email 
+  AND utilisateur.username ="JeanPierre_2";
 
 
--- Selectionner Les séquences non attribués 
+-- Selectionner les séquences non attribués 
 SELECT geneId
 FROM sequences,genome
 WHERE sequences.statut = "0";
