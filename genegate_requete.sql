@@ -95,13 +95,14 @@ FROM annotation;
 
 -- Choix du validateur 
 UPDATE annotation
-SET idValid1 = 6
+SET idValid1 = 6,
+  statut = "Pas d'annotateur"
 WHERE annotation.idSeq = "EAR4567"; 
 
 -- Choix de l'annotateur par le validateur (idUtilisateur = 6)
 UPDATE annotation
 SET idAnnot = 8,
-  statut = 
+  statut = "A annoter"
 WHERE annotation.idSeq = "EAR4567";
 
 -- Annotation d'une sequence par l'annotateur
@@ -109,26 +110,32 @@ UPDATE sequences
 SET fonction = "Hypothetical protein"
 WHERE idSeq = "EAR4567";
 
+UPDATE annotation 
+SET statut = "A valider"
+WHERE annotation.idSeq = "EAR4567";
+
 -- Validation d'une annotation par un validateur (idUtilisateur = 10)
 UPDATE annotation 
 SET idValid2 = 10,
   commentaire = 'blblablabla'
-  statut = ...
+  statut = "validation"
 WHERE annotation.idSeq = "EAR4567";
 
-UPDATE sequences  
-SET statut = ...
+UPDATE transcrit 
+SET annotee = 1
 WHERE idSeq = "EAR4567";
 
 -- Rejet d'une annotation
 UPDATE annotation 
 SET idValid2 = 10,
   commentaire = 'blblablabla'
-  statut = ...
+  statut = "rejet"
 WHERE annotation.idSeq = "EAR4567";
 
 --GESTION DU FORUM
 ------------------
+SELECT *
+FROM 
 
 --AUTRE
 ------------------

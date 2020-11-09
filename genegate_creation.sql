@@ -13,7 +13,7 @@ CREATE TABLE utilisateur(
 	numtel VARCHAR(15) NOT NULL,
 	dateConnexion timestamp,
 	statut VARCHAR(10) NOT NULL CHECK (statut = 'Lecteur' OR statut ='Annotateur' OR statut ='Validateur' OR statut ='Administrateur'),
-	validation BOOL,
+	validation_compte BOOLEAN,
 	PRIMARY KEY (idUtilisateur)
 );
 
@@ -28,8 +28,8 @@ CREATE TABLE genome(
 	PRIMARY KEY (idGenome)
 );
 
--- #Creation de la relation sequence
-CREATE TABLE sequence(
+-- #Creation de la relation transcrit --> car sequence est un mot deja pris 
+CREATE TABLE transcrit(
 	idSeq VARCHAR(20),  
 	nomGene VARCHAR(20),
 	nomProt VARCHAR(20),
@@ -40,7 +40,7 @@ CREATE TABLE sequence(
 	pos_fin int,
 	biotypeGene VARCHAR(100),
 	biotypeTranscrit VARCHAR(100),
-	statut int CHECK (statut = 0 OR statut = 1 OR statut = 2 OR statut = 3), -- # 0 : non annoté, 1: annoté, 2: en cours d'annotation, 3: annoté mais non validé
+	annotee BOOLEAN, -- (statut = 0 OR statut = 1 OR statut = 2 OR statut = 3), -- # 0 : non annoté, 1: annoté, 2: en cours d'annotation, 3: annoté mais non validé
 	idGenome VARCHAR(20),
 	PRIMARY KEY (idSeq), 
 	CONSTRAINT fkseq FOREIGN KEY  (idGenome) REFERENCES genome (idGenome)
@@ -58,7 +58,7 @@ CREATE TABLE Sujet(
 --# Création de la relation Forum
 CREATE TABLE Forum (
 	idSujet serial,
-	sujet VARCHAR(100) NOT NULL,
+	sujet VARCHAR(100) NOT NULL UNIQUE,
 	dateCreation timestamp,
 	emailAnnot VARCHAR(100),
 	PRIMARY KEY (idSujet),
@@ -85,6 +85,7 @@ CREATE TABLE Annotation (
 	idValid1  VARCHAR(100),
 	idValid2  VARCHAR(100),
 	commentaire TEXT,
+	statut int -- CHECK blablablabla 
 	PRIMARY KEY (numAnnot), 
 	CONSTRAINT fkannot1 FOREIGN KEY  (idSeq) REFERENCES sequence (idSeq),
 	CONSTRAINT fkannot2 FOREIGN KEY  (idAnnot) REFERENCES utilisateur (idUtilisateur),
