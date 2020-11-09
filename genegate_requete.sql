@@ -1,3 +1,6 @@
+
+--CONNEXION
+------------
 -- Faire son login:
 SELECT utilisateur.role --Pour savoir quelle vue de la page d'accueil choisir
 FROM utilisateur
@@ -15,6 +18,10 @@ WHERE email = ‘X’;
 INSERT INTO utilisateur
 VALUES (‘email.com’, ‘username’, ‘mdp’, ‘nom’, ‘prenom’, ‘numtel’, ‘statut’); --mettre des vraies valeurs ? 
 
+-- Rechercher les utilisateurs non validés
+SELECT * --Pour verifier le mot de passe
+FROM utilisateur
+WHERE statut = FALSE;
 
 -- Avoir toutes les informations sur un utilisateur :
 SELECT *
@@ -26,6 +33,8 @@ SELECT nom,prenom
 FROM utilisateur
 WHERE role = "Annotateur"
 
+--RECHERCHE GENOME/SEQUENCE
+---------------------------
 
 -- Recherche d’information sur une séquence proteique :
 SELECT *
@@ -51,6 +60,9 @@ SELECT *
 FROM genome
 WHERE genre = "Escherichia" and souche ="Coli";
 
+--GESTION DES ANNOTATIONS
+---------------------------
+
 -- Recherche de séquence annoté par Paul :
 SELECT seqid
 FROM annotation, utilisateur
@@ -63,11 +75,7 @@ FROM sequences,genome
 WHERE sequences.statut = "0";
 
 
--- Regrouper chez E.Coli les gènes par leurs fonctions :
-SELECT fonction
-FROM sequences, genome
-WHERE sequences.idGenome = genome.idGenome and genre = "Escherichia" and souche ="Coli" 
-GROUP BY fonction;
+
 
 -- Sélectionner les annotateurs ayant validés des séquences du génome id = “AR5330I” 
 SELECT nom, prenom
@@ -82,3 +90,13 @@ GROUP BY emailAnnot
 ORDER BY COUNT(idSeq);
 
 -- Selectionner les génomes complètement annotés :
+
+--GESTION DU FORUM
+------------------
+
+--AUTRE
+------------------
+-- Regrouper chez E.Coli les gènes par leurs fonctions :
+SELECT fonction
+FROM sequences, genome
+WHERE sequences.idGenome = genome.idGenome and genre = "Escherichia" and souche ="Coli";
