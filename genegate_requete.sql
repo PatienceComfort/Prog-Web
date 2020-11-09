@@ -1,37 +1,57 @@
 
 --CONNEXION
 ------------
--- Faire son login:
-SELECT utilisateur.role --Pour savoir quelle vue de la page d'accueil choisir
+--Se connecter
+SELECT utilisateur.mdp --Pour verifier le mot de passe de l'utilisateur en comparant avec le mdp tape
+FROM utilisateur
+WHERE username = "JeanPierre_2"
+  AND statut = TRUE;   --Seuls les utilisateurs valides peuvent acceder au site
+
+SELECT utilisateur.mdp --Comme précédemment, mais utilisation de l'email au lieu du nom d'utilisateur
+FROM utilisateur
+WHERE email = ‘X’
+  AND statut = TRUE;
+
+--Pour savoir quelle vue de la page d'accueil choisir
+SELECT utilisateur.role 
 FROM utilisateur
 WHERE username = "JeanPierre_2";
-
-SELECT utilisateur.mdp --Pour verifier le mot de passe
-FROM utilisateur
-WHERE username = ‘X’;
-
-SELECT utilisateur.mdp --Pour verifier le mot de passe
-FROM utilisateur
-WHERE email = ‘X’;
 
 -- S'inscrire:
 INSERT INTO utilisateur
 VALUES (‘email.com’, ‘username’, ‘mdp’, ‘nom’, ‘prenom’, ‘numtel’, ‘statut’); --mettre des vraies valeurs ? 
 
--- Rechercher les utilisateurs non validés
-SELECT * --Pour verifier le mot de passe
+--GESTION DES UTILISATEURS
+--------------------------
+
+--Mise a jour de la date de derniere connexion
+UPDATE utilisateur
+SET dateConnexion = '09/11/2020 17h04',
+WHERE username = "JeanPierre_2";
+
+-- Rechercher les utilisateurs non validés et leurs informations pour les afficher a l'administrateur
+SELECT *
 FROM utilisateur
 WHERE statut = FALSE;
 
--- Avoir toutes les informations sur un utilisateur :
+-- Rechercher les utilisateurs validés et leurs informations pour les afficher a l'administrateur
 SELECT *
 FROM utilisateur
-WHERE username = "MauveG";
+WHERE statut = TRUE;
 
 -- Rechercher les annotateurs:
 SELECT nom,prenom
 FROM utilisateur
-WHERE role = "Annotateur"
+WHERE role = "Annotateur";
+
+-- Valider une inscription
+UPDATE utilisateur
+SET statut = TRUE,
+WHERE username = "Laurent_123";
+
+-- Refuser une inscription                (a verifier !!)
+DELETE FROM 'utilisateur'
+WHERE 'username' = "Laurent_123";
 
 --RECHERCHE GENOME/SEQUENCE
 ---------------------------
@@ -100,3 +120,7 @@ ORDER BY COUNT(idSeq);
 SELECT fonction
 FROM sequences, genome
 WHERE sequences.idGenome = genome.idGenome and genre = "Escherichia" and souche ="Coli";
+
+
+
+--UPDATE ??
