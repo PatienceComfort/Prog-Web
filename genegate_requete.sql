@@ -46,7 +46,7 @@ WHERE role = "Annotateur";
 
 -- Valider une inscription
 UPDATE utilisateur
-SET statut = TRUE,
+SET statut = TRUE
 WHERE username = "Laurent_123";
 
 -- Refuser une inscription                (a verifier !!)
@@ -83,34 +83,49 @@ WHERE genre = "Escherichia" and souche ="Coli";
 --GESTION DES ANNOTATIONS
 ---------------------------
 
--- Recherche de séquence annoté par un annotateur :
-SELECT seqid
-FROM annotation, utilisateur
-WHERE annotation.emailAnnot = utilisateur.email 
-  AND utilisateur.username ="JeanPierre_2";
+-- Recherche des annotaions d'un annotateur :
+SELECT *
+FROM annotation
+WHERE utilisateur.idUtilisateur = 4
+ORDER BY annotation.statut ASC;
 
+-- Annotations visibles par les validateurs
+SELECT *
+FROM annotation;
 
--- Selectionner les séquences non attribués 
-SELECT geneId
-FROM sequences,genome
-WHERE sequences.statut = "0";
+-- Choix du validateur 
+UPDATE annotation
+SET idValid1 = 6
+WHERE annotation.idSeq = "EAR4567"; 
 
+-- Choix de l'annotateur par le validateur (idUtilisateur = 6)
+UPDATE annotation
+SET idAnnot = 8,
+  statut = 
+WHERE annotation.idSeq = "EAR4567";
 
+-- Annotation d'une sequence par l'annotateur
+UPDATE sequences
+SET fonction = "Hypothetical protein"
+WHERE idSeq = "EAR4567";
 
+-- Validation d'une annotation par un validateur (idUtilisateur = 10)
+UPDATE annotation 
+SET idValid2 = 10,
+  commentaire = 'blblablabla'
+  statut = ...
+WHERE annotation.idSeq = "EAR4567";
 
--- Sélectionner les annotateurs ayant validés des séquences du génome id = “AR5330I” 
-SELECT nom, prenom
-FROM utilisateur , annotation
-WHERE utilisateur.email = annotation.email 
-and idGenome =  "AR5330I";
+UPDATE sequences  
+SET statut = ...
+WHERE idSeq = "EAR4567";
 
--- Trier Les annotateurs ayant annotés le plus de séquences 
-SELECT emailAnnot, COUNT(idSeq)
-FROM  annotation 
-GROUP BY emailAnnot 
-ORDER BY COUNT(idSeq);
-
--- Selectionner les génomes complètement annotés :
+-- Rejet d'une annotation
+UPDATE annotation 
+SET idValid2 = 10,
+  commentaire = 'blblablabla'
+  statut = ...
+WHERE annotation.idSeq = "EAR4567";
 
 --GESTION DU FORUM
 ------------------
@@ -122,6 +137,14 @@ SELECT fonction
 FROM sequences, genome
 WHERE sequences.idGenome = genome.idGenome and genre = "Escherichia" and souche ="Coli";
 
+-- Trier Les annotateurs ayant annotés le plus de séquences 
+SELECT emailAnnot, COUNT(idSeq)
+FROM  annotation 
+GROUP BY emailAnnot 
+ORDER BY COUNT(idSeq);
 
-
---UPDATE ??
+-- Sélectionner les annotateurs ayant validés des séquences du génome id = “AR5330I” 
+SELECT nom, prenom
+FROM utilisateur , annotation
+WHERE utilisateur.email = annotation.email 
+and idGenome =  "AR5330I";

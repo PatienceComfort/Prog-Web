@@ -77,7 +77,7 @@ CREATE TABLE reponse(
 	CONSTRAINT fkrep2 FOREIGN KEY  (idSujet) REFERENCES Forum(idSujet)
 );
 
---# Création de la relation Annotation
+--# Création de la relation Annotation --> utiliser les id pas les email, creation d'un statut ici plutot que seq
 CREATE TABLE Annotation ( 
 	numAnnot int,
 	idSeq VARCHAR(20),
