@@ -14,21 +14,6 @@ INSERT INTO genome VALUES ('1CECOLI','Escherechia','Coli', 'K12','NULL',4.6);
 
 
 
--- # Requetes SQL --> a mettre dans un autre fichier ?
-
-SELECT email
-FROM utilisateur 
-WHERE nom == 'MauveG';
-
-SELECT nom,prenom
-FROM utilisateur
-WHERE statut = 'Annotateur';
-
-SELECT *
-FROM genome
-WHERE genre = 'Escherechia' and espece ='Coli' ;
-
-
 
 
 
