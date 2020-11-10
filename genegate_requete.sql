@@ -88,7 +88,7 @@ WHERE transcrit.idGenome = genome.idGenome
   AND genome.genre = "Escherichia"
 
 -- Recherche d’information sur le génome des E.Coli :
-SELECT *
+SELECT idGenome
 FROM genome
 WHERE genre = "Escherichia"
   AND espece = "Coli"
@@ -100,7 +100,7 @@ WHERE genre = "Escherichia"
 -- Recherche des annotations d'un annotateur :
 SELECT *
 FROM annotation
-WHERE utilisateur.idUtilisateur = "JeanPierre_2"
+WHERE annotation.idAnnot = "JeanPierre_2"
 ORDER BY annotation.statut ASC;
 
 -- Annotations visibles par les validateurs
