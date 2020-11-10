@@ -1,9 +1,9 @@
 -- # Utilisateur
 
-INSERT INTO utilisateur VALUES ('1','mauve.guy@gmail.com','MauveG', '12345678','Guy','Mauve',0711202007,NULL,'Lecteur',NULL);
-INSERT INTO utilisateur VALUES ('2','JP@gmail.com','JP91', 'JeanPierre_2','Jean','Pierre',0714578900,NULL,'Annotateur',NULL);
-INSERT INTO utilisateur VALUES ('3','marie@gmail.com','MarieL', 'Laurent_123','Laurent','Marion',0610209876,NULL,'Lecteur',NULL);
-INSERT INTO utilisateur VALUES ('4','charles@gmail.com','CharlesR', 'CRoy_1999','Roy','Charles',0678956787,NULL,'Validateur',NULL);
+INSERT INTO utilisateur VALUES ('mauve.guy@gmail.com','MauveG', '12345678','Guy','Mauve',0711202007,NULL,'Lecteur',NULL);
+INSERT INTO utilisateur VALUES ('JP@gmail.com','JP91', 'JeanPierre_2','Jean','Pierre',0714578900,NULL,'Annotateur',NULL);
+INSERT INTO utilisateur VALUES ('marie@gmail.com','MarieL', 'Laurent_123','Laurent','Marion',0610209876,NULL,'Lecteur',NULL);
+INSERT INTO utilisateur VALUES ('charles@gmail.com','CharlesR', 'CRoy_1999','Roy','Charles',0678956787,NULL,'Validateur',NULL);
 
 
 -- # Genome

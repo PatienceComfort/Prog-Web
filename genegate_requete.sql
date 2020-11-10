@@ -8,7 +8,7 @@ WHERE username = "JeanPierre_2"
   AND statut = TRUE;   --Seuls les utilisateurs valides peuvent acceder au site
 
 --Se connecter
-SELECT mdp --Comme précédemment, mais utilisation de l'email au lieu du nom d'utilisateur
+SELECT mdp --Comme precedemment, mais utilisation de l'email au lieu du nom d'utilisateur
 FROM utilisateur
 WHERE email = ‘X’
   AND statut = TRUE;
@@ -66,28 +66,31 @@ WHERE 'username' = "Laurent_123";
 ---------------------------
 
 -- Recherche d’information sur une séquence proteique :
-SELECT *
+SELECT transcrit.idSeq
 FROM transcrit
 WHERE seqProt = "MPLLKDBNTRRADETN";
 
 -- Recherche d’information sur une séquence nucléotidique:
-SELECT seqNt
+SELECT transcrit.idSeq
 FROM transcrit
 WHERE seqNt LIKE "%ATAAACCG%"
-  AND fonction= "nuclease";
+  AND fonction= "nuclease"
+  AND taille_transcrit <200;
 
 -- Recherche d’information sur une séquence nucléotidique d'un genome particulier:
-SELECT seqNt
+SELECT transcrit.idSeq
 FROM transcrit, genome
 WHERE transcrit.idGenome = genome.idGenome
   AND fonction= "nuclease"
   AND seqNt LIKE "%ATAAACCG%"
   AND genome.genre = "Escherichia"
 
--- Recherche d’information sur le génome  de E.Coli :
+-- Recherche d’information sur le génome des E.Coli :
 SELECT *
 FROM genome
-WHERE genre = "Escherichia" and souche ="Coli";
+WHERE genre = "Escherichia"
+  AND espece = "Coli"
+  AND taille > 3000000;
 
 --GESTION DES ANNOTATIONS
 ---------------------------
@@ -126,8 +129,8 @@ WHERE annotation.idSeq = "EAR4567";
 -- Validation d'une annotation par un validateur (idUtilisateur = 10)
 UPDATE annotation 
 SET idValid2 = 10,
-  commentaire = 'blblablabla'
-  statut = "validation"
+  commentaire = 'blablablabla'
+  statut = "Validation"
 WHERE annotation.idSeq = "EAR4567";
 
 UPDATE transcrit 
@@ -138,7 +141,7 @@ WHERE idSeq = "EAR4567";
 UPDATE annotation 
 SET idValid2 = 10,
   commentaire = 'blblablabla'
-  statut = "rejet"
+  statut = "Rejet"
 WHERE annotation.idSeq = "EAR4567";
 
 --GESTION DU FORUM
@@ -186,8 +189,8 @@ FROM  annotation
 GROUP BY emailAnnot 
 ORDER BY COUNT(idSeq);
 
--- Sélectionner les annotateurs ayant validés des séquences du génome id = “AR5330I” 
-SELECT nom, prenom
+-- Sélectionner les informations des validateurs ayant validés des séquences du génome id = “AR5330I” 
+SELECT nom, prenom, username
 FROM utilisateur , annotation
-WHERE utilisateur.email = annotation.email 
+WHERE utilisateur.username = annotation.idValid2 
 and idGenome =  "AR5330I";

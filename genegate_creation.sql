@@ -7,8 +7,8 @@ SET SCHEMA 'genegate';
 
 -- #Création de la relation
 CREATE TABLE utilisateur(
-	email VARCHAR(100) NOT NULL UNIQUE  CHECK (email ~* '[a-z0-9]*@[a-z0-9.]*'),
-	username VARCHAR(20) NOT NULL UNIQUE,
+	email VARCHAR(100) NOT NULL UNIQUE CHECK (email ~* '[a-z0-9]*@[a-z0-9.]*'),
+	username VARCHAR(20),
 	mdp VARCHAR(20) NOT NULL CHECK (length(mdp) > 7),
 	nom VARCHAR(20) NOT NULL,
 	prenom VARCHAR(20)NOT NULL,
@@ -43,9 +43,10 @@ CREATE TABLE transcrit(
 	seqProt TEXT,
 	pos_debut int,
 	pos_fin int,
+	taille_transcrit int,
 	biotypeGene VARCHAR(100),
 	biotypeTranscrit VARCHAR(100),
-	annotee BOOLEAN, -- (statut = 0 OR statut = 1 OR statut = 2 OR statut = 3), -- # 0 : non annoté, 1: annoté, 2: en cours d'annotation, 3: annoté mais non validé
+	annotee BOOLEAN, -- False : non annotee, True : annotee
 	idGenome VARCHAR(20),
 	PRIMARY KEY (idSeq), 
 	CONSTRAINT fkseq FOREIGN KEY  (idGenome) REFERENCES genome (idGenome)
@@ -67,8 +68,8 @@ CREATE TABLE forum (
 --# Création de la relation Réponse
 CREATE TABLE reponse( 
 	idReponse serial,
-	nomAnnot  VARCHAR(100),
-	response  VARCHAR(250) NOT NULL,
+	nomAnnot  VARCHAR(20),
+	response  TEXT NOT NULL,
 	dateReponse  timestamp,
 	idSujet  int,
 	PRIMARY KEY (idReponse), 
@@ -78,7 +79,7 @@ CREATE TABLE reponse(
 
 --# Creation de la relation Accessujet
 CREATE TABLE accessujet(
-	nomAnnot  VARCHAR(100),
+	nomAnnot  VARCHAR(20),
 	idSujet int,
 	CONSTRAINT fkacc1 FOREIGN KEY  (nomAnnot) REFERENCES utilisateur (username),
 	CONSTRAINT fkacc2 FOREIGN KEY  (idSujet) REFERENCES forum (idSujet),
@@ -88,15 +89,15 @@ CREATE TABLE accessujet(
 --ANNOTATIONS
 --------------
 
---# Création de la relation Annotation --> creation d'un statut ici plutot que seq
-CREATE TABLE Annotation ( 
+--# Création de la relation Annotation
+CREATE TABLE annotation ( 
 	numAnnot int,
 	idSeq VARCHAR(20),
-	idAnnot  VARCHAR(100),
-	idValid1  VARCHAR(100),
-	idValid2  VARCHAR(100),
+	idAnnot  VARCHAR(20),
+	idValid1  VARCHAR(20),
+	idValid2  VARCHAR(20),
 	commentaire TEXT,
-	statut int CHECK (statut = 0 OR statut = 1 OR statut = 2 OR statut = 3), -- # 0 : non annoté, 1: annoté, 2: en cours d'annotation, 3: annoté mais non validé-- CHECK blablablabla 
+	statut VARCHAR(20) CHECK (statut = "Pas de validateur" OR statut = "Pas d'annotateur" OR statut = "A annoter" OR statut = "A valider" OR statut = "Validation" OR statut = "Rejet"),
 	PRIMARY KEY (numAnnot), 
 	CONSTRAINT fkannot1 FOREIGN KEY  (idSeq) REFERENCES sequence (idSeq),
 	CONSTRAINT fkannot2 FOREIGN KEY  (idAnnot) REFERENCES utilisateur (username),
