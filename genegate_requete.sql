@@ -68,7 +68,9 @@ WHERE 'username' = "Laurent_123";
 -- Recherche d’information sur une séquence proteique :
 SELECT transcrit.idSeq
 FROM transcrit
-WHERE seqProt = "MPLLKDBNTRRADETN";
+WHERE seqProt LIKE "MPLLKDBNTRRADETN%"
+  AND pos_debut = 3567
+  AND biotypeGene = "Protein";
 
 -- Recherche d’information sur une séquence nucléotidique:
 SELECT transcrit.idSeq
@@ -95,10 +97,10 @@ WHERE genre = "Escherichia"
 --GESTION DES ANNOTATIONS
 ---------------------------
 
--- Recherche des annotaions d'un annotateur :
+-- Recherche des annotations d'un annotateur :
 SELECT *
 FROM annotation
-WHERE utilisateur.idUtilisateur = 4
+WHERE utilisateur.idUtilisateur = "JeanPierre_2"
 ORDER BY annotation.statut ASC;
 
 -- Annotations visibles par les validateurs
@@ -107,13 +109,13 @@ FROM annotation;
 
 -- Choix du validateur 
 UPDATE annotation
-SET idValid1 = 6,
+SET idValid1 = "CRoy_1999",
   statut = "Pas d'annotateur"
 WHERE annotation.idSeq = "EAR4567"; 
 
--- Choix de l'annotateur par le validateur (idUtilisateur = 6)
+-- Choix de l'annotateur par le validateur
 UPDATE annotation
-SET idAnnot = 8,
+SET idAnnot = "JeanPierre_2",
   statut = "A annoter"
 WHERE annotation.idSeq = "EAR4567";
 
@@ -126,9 +128,9 @@ UPDATE annotation
 SET statut = "A valider"
 WHERE annotation.idSeq = "EAR4567";
 
--- Validation d'une annotation par un validateur (idUtilisateur = 10)
+-- Validation d'une annotation par un validateur
 UPDATE annotation 
-SET idValid2 = 10,
+SET idValid2 = "CRoy_1999",
   commentaire = 'blablablabla'
   statut = "Validation"
 WHERE annotation.idSeq = "EAR4567";
