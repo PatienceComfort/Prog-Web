@@ -2,13 +2,13 @@
 --CONNEXION
 ------------
 --Se connecter
-SELECT utilisateur.mdp --Pour verifier le mot de passe de l'utilisateur en comparant avec le mdp tape
+SELECT mdp --Pour verifier le mot de passe de l'utilisateur en comparant avec le mdp tape
 FROM utilisateur
 WHERE username = "JeanPierre_2"
   AND statut = TRUE;   --Seuls les utilisateurs valides peuvent acceder au site
 
 --Se connecter
-SELECT utilisateur.mdp --Comme précédemment, mais utilisation de l'email au lieu du nom d'utilisateur
+SELECT mdp --Comme précédemment, mais utilisation de l'email au lieu du nom d'utilisateur
 FROM utilisateur
 WHERE email = ‘X’
   AND statut = TRUE;
@@ -20,7 +20,15 @@ WHERE username = "JeanPierre_2";
 
 -- S'inscrire:
 INSERT INTO utilisateur
-VALUES (‘email.com’, ‘username’, ‘mdp’, ‘nom’, ‘prenom’, ‘numtel’, ‘statut’); --mettre des vraies valeurs ? 
+VALUES (‘email.com’, ‘username’, ‘mdp’, ‘nom’, ‘prenom’, ‘numtel’, ‘statut’); --mettre des vraies valeurs ?
+
+-- Obtenir les noms d'utilisateurs deja present dans la base
+SELECT username
+FROM utilisateur;
+
+-- Obtenir les noms d'utilisateurs deja present dans la base
+SELECT email
+FROM utilisateur;
 
 --GESTION DES UTILISATEURS
 --------------------------
@@ -59,19 +67,19 @@ WHERE 'username' = "Laurent_123";
 
 -- Recherche d’information sur une séquence proteique :
 SELECT *
-FROM sequences
+FROM transcrit
 WHERE seqProt = "MPLLKDBNTRRADETN";
 
 -- Recherche d’information sur une séquence nucléotidique:
 SELECT seqNt
-FROM sequences
+FROM transcrit
 WHERE seqNt LIKE "%ATAAACCG%"
   AND fonction= "nuclease";
 
 -- Recherche d’information sur une séquence nucléotidique d'un genome particulier:
 SELECT seqNt
-FROM sequences, genome
-WHERE sequences.idGenome = genome.idGenome
+FROM transcrit, genome
+WHERE transcrit.idGenome = genome.idGenome
   AND fonction= "nuclease"
   AND seqNt LIKE "%ATAAACCG%"
   AND genome.genre = "Escherichia"
@@ -107,7 +115,7 @@ SET idAnnot = 8,
 WHERE annotation.idSeq = "EAR4567";
 
 -- Annotation d'une sequence par l'annotateur
-UPDATE sequences
+UPDATE transcrit
 SET fonction = "Hypothetical protein"
 WHERE idSeq = "EAR4567";
 
@@ -169,8 +177,8 @@ INSERT INTO accessujet VALUES ('JeanPierre_2',36);
 ------------------
 -- Regrouper chez E.Coli les gènes par leurs fonctions :
 SELECT fonction
-FROM sequences, genome
-WHERE sequences.idGenome = genome.idGenome and genre = "Escherichia" and souche ="Coli";
+FROM transcrit, genome
+WHERE transcrit.idGenome = genome.idGenome and genre = "Escherichia" and souche ="Coli";
 
 -- Trier les annotateurs ayant annotés le plus de séquences 
 SELECT emailAnnot, COUNT(idSeq)

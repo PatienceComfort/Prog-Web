@@ -7,7 +7,6 @@ SET SCHEMA 'genegate';
 
 -- #Création de la relation
 CREATE TABLE utilisateur(
-	--idUtilisateur serial,
 	email VARCHAR(100) NOT NULL UNIQUE  CHECK (email ~* '[a-z0-9]*@[a-z0-9.]*'),
 	username VARCHAR(20) NOT NULL UNIQUE,
 	mdp VARCHAR(20) NOT NULL CHECK (length(mdp) > 7),
@@ -17,7 +16,7 @@ CREATE TABLE utilisateur(
 	dateConnexion timestamp,
 	statut VARCHAR(10) NOT NULL CHECK (statut = 'Lecteur' OR statut ='Annotateur' OR statut ='Validateur' OR statut ='Administrateur'),
 	validation_compte BOOLEAN,
-	PRIMARY KEY (idUtilisateur)
+	PRIMARY KEY (username)
 );
 
 --GENOME ET SEQUENCE
@@ -67,29 +66,29 @@ CREATE TABLE forum (
 
 --# Création de la relation Réponse
 CREATE TABLE reponse( 
-	reponseid serial,
-	emailAnnot  VARCHAR(100),
+	idReponse serial,
+	nomAnnot  VARCHAR(100),
 	response  VARCHAR(250) NOT NULL,
 	dateReponse  timestamp,
 	idSujet  int,
-	PRIMARY KEY (reponseid), 
-	CONSTRAINT fkrep1 FOREIGN KEY  (emailAnnot) REFERENCES utilisateur (email),
+	PRIMARY KEY (idReponse), 
+	CONSTRAINT fkrep1 FOREIGN KEY  (nomAnnot) REFERENCES utilisateur (email),
 	CONSTRAINT fkrep2 FOREIGN KEY  (idSujet) REFERENCES Forum(idSujet)
 );
 
 --# Creation de la relation Accessujet
 CREATE TABLE accessujet(
-	emailAnnot  VARCHAR(100),
+	nomAnnot  VARCHAR(100),
 	idSujet int,
-	CONSTRAINT fkacc1 FOREIGN KEY  (emailAnnot) REFERENCES utilisateur (email),
+	CONSTRAINT fkacc1 FOREIGN KEY  (nomAnnot) REFERENCES utilisateur (username),
 	CONSTRAINT fkacc2 FOREIGN KEY  (idSujet) REFERENCES forum (idSujet),
-	PRIMARY KEY (emailAnnot,idSujet)
+	PRIMARY KEY (nomAnnot,idSujet)
 );
 
 --ANNOTATIONS
 --------------
 
---# Création de la relation Annotation --> utiliser les id pas les email, creation d'un statut ici plutot que seq
+--# Création de la relation Annotation --> creation d'un statut ici plutot que seq
 CREATE TABLE Annotation ( 
 	numAnnot int,
 	idSeq VARCHAR(20),
@@ -97,12 +96,12 @@ CREATE TABLE Annotation (
 	idValid1  VARCHAR(100),
 	idValid2  VARCHAR(100),
 	commentaire TEXT,
-	statut int -- CHECK blablablabla 
+	statut int CHECK (statut = 0 OR statut = 1 OR statut = 2 OR statut = 3), -- # 0 : non annoté, 1: annoté, 2: en cours d'annotation, 3: annoté mais non validé-- CHECK blablablabla 
 	PRIMARY KEY (numAnnot), 
 	CONSTRAINT fkannot1 FOREIGN KEY  (idSeq) REFERENCES sequence (idSeq),
-	CONSTRAINT fkannot2 FOREIGN KEY  (idAnnot) REFERENCES utilisateur (idUtilisateur),
-	CONSTRAINT fkannot3 FOREIGN KEY  (idValid1) REFERENCES utilisateur (idUtilisateur),
-	CONSTRAINT fkannot4 FOREIGN KEY  (idValid2) REFERENCES utilisateur (idUtilisateur)
+	CONSTRAINT fkannot2 FOREIGN KEY  (idAnnot) REFERENCES utilisateur (username),
+	CONSTRAINT fkannot3 FOREIGN KEY  (idValid1) REFERENCES utilisateur (username),
+	CONSTRAINT fkannot4 FOREIGN KEY  (idValid2) REFERENCES utilisateur (username)
 );
 
 
