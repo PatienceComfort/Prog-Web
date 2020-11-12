@@ -60,9 +60,9 @@ CREATE TABLE forum (
 	idSujet serial,
 	sujet VARCHAR(100) NOT NULL UNIQUE,
 	dateCreation timestamp NOT NULL,
-	emailAnnot VARCHAR(100) NOT NULL,
+	nomAnnot VARCHAR(20) NOT NULL,
 	PRIMARY KEY (idSujet),
-	CONSTRAINT fkforum FOREIGN KEY (emailAnnot) REFERENCES utilisateur(email)
+	CONSTRAINT fkforum FOREIGN KEY (nomAnnot) REFERENCES utilisateur(username)
 );
 
 --# Création de la relation Réponse
@@ -73,8 +73,8 @@ CREATE TABLE reponse(
 	dateReponse  timestamp NOT NULL,
 	idSujet  int NOT NULL,
 	PRIMARY KEY (idReponse), 
-	CONSTRAINT fkrep1 FOREIGN KEY  (nomAnnot) REFERENCES utilisateur (email),
-	CONSTRAINT fkrep2 FOREIGN KEY  (idSujet) REFERENCES Forum(idSujet)
+	CONSTRAINT fkrep1 FOREIGN KEY  (nomAnnot) REFERENCES utilisateur (username),
+	CONSTRAINT fkrep2 FOREIGN KEY  (idSujet) REFERENCES forum(idSujet)
 );
 
 --# Creation de la relation Accessujet

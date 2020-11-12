@@ -13,7 +13,8 @@ INSERT INTO genome VALUES ('1AEALBA','Escherechia','Alba', 'AHB02','AAAAATTTTTCC
 INSERT INTO genome VALUES ('1CECOLI','Escherechia','Coli', 'K12','AAAAATTTTTCCCCCGGGGG',20);
 
 --# Transcrit
-INSERT INTO transcrit VALUES ('001','Gene1','Pro1','Protease','ATTTTT','MM',5,10,6,'Unknown','Unknown',True,'1AECOLI')
+INSERT INTO transcrit VALUES ('A01','Gene1','Pro1','Protease','ATTTTT','MM',5,10,6,'Unknown','Unknown',True,'1AECOLI')
+INSERT INTO transcrit VALUES ('E21','Gene1','Pro1','Protease','ATTTTT','MM',5,10,6,'Unknown','Unknown',True,'1AEALBA')
 
 
 
