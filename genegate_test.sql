@@ -12,12 +12,22 @@ INSERT INTO genome VALUES ('1AECOLI','Escherechia','Coli', 'BYU34','AAAAATTTTTCC
 INSERT INTO genome VALUES ('1AEALBA','Escherechia','Alba', 'AHB02','AAAAATTTTTCCCCCGGGGG',20);
 INSERT INTO genome VALUES ('1CECOLI','Escherechia','Coli', 'K12','AAAAATTTTTCCCCCGGGGG',20);
 
---# Transcrit
-INSERT INTO transcrit VALUES ('A01','Gene1','Pro1','Protease','ATTTTT','MM',5,10,6,'Unknown','Unknown',True,'1AECOLI')
-INSERT INTO transcrit VALUES ('E21','Gene1','Pro1','Protease','ATTTTT','MM',5,10,6,'Unknown','Unknown',True,'1AEALBA')
+-- # Transcrit
+INSERT INTO transcrit VALUES ('A01','Gene1','Pro1','Protease','ATTTTT','MM',5,10,6,'Unknown','Unknown',True,'1AECOLI');
+INSERT INTO transcrit VALUES ('E21','Gene1','Pro1',NULL,'ATTTTT','MM',5,10,6,'Unknown','Unknown',False,'1AEALBA');
 
+-- # Forum
+INSERT INTO forum VALUES (DEFAULT, 'Probleme annotation','08-20-2020 15:35:00', 'JP91');
 
+-- # Reponse
+INSERT INTO reponse VALUES (DEFAULT, 'JP91', 'Un petit probleme est apparu lors de mon annotation','08-20-2020 15:35:00',1);
 
+-- # Accessujet
+INSERT INTO accessujet VALUES ('JP91',1);
+INSERT INTO accessujet VALUES ('MauveG',1);
+
+-- # Annotation
+INSERT INTO annotation VALUES (1, 'E21', NULL, NULL, NULL, NULL, 'Pas de validateur' );
 
 
 

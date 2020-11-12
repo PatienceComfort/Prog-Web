@@ -4,8 +4,8 @@
 --Se connecter
 SELECT mdp --Pour verifier le mot de passe de l'utilisateur en comparant avec le mdp tape
 FROM utilisateur
-WHERE username = "JeanPierre_2"
-  AND statut = TRUE;   --Seuls les utilisateurs valides peuvent acceder au site
+WHERE username = 'JP91'
+  AND validation_compte  = 't';   --Seuls les utilisateurs valides peuvent acceder au site
 
 --Se connecter
 SELECT mdp --Comme precedemment, mais utilisation de l'email au lieu du nom d'utilisateur
@@ -16,11 +16,11 @@ WHERE email = ‘X’
 --Pour savoir quelle vue de la page d'accueil choisir
 SELECT utilisateur.role 
 FROM utilisateur
-WHERE username = "JeanPierre_2";
+WHERE username = "JP91";
 
 -- S'inscrire:
-INSERT INTO utilisateur
-VALUES (‘email.com’, ‘username’, ‘mdp’, ‘nom’, ‘prenom’, ‘numtel’, ‘statut’); --mettre des vraies valeurs ?
+INSERT INTO utilisateur VALUES ('charles@gmail.com','CharlesR', 'CRoy_1999','Roy','Charles',0678956787,NULL,'Validateur',False);
+
 
 -- Obtenir les noms d'utilisateurs deja present dans la base
 SELECT username
@@ -36,7 +36,7 @@ FROM utilisateur;
 --Mise a jour de la date de derniere connexion
 UPDATE utilisateur
 SET dateConnexion = '09/11/2020 17h04',
-WHERE username = "JeanPierre_2";
+WHERE username = "JP91";
 
 -- Rechercher les utilisateurs non validés et leurs informations pour les afficher a l'administrateur
 SELECT *
@@ -100,7 +100,7 @@ WHERE genre = "Escherichia"
 -- Recherche des annotations d'un annotateur :
 SELECT *
 FROM annotation
-WHERE annotation.idAnnot = "JeanPierre_2"
+WHERE annotation.idAnnot = "JP91"
 ORDER BY annotation.statut ASC;
 
 -- Annotations visibles par les validateurs
@@ -109,13 +109,13 @@ FROM annotation;
 
 -- Choix du validateur 
 UPDATE annotation
-SET idValid1 = "CRoy_1999",
-  statut = "Pas d'annotateur"
+SET idValid1 = "CharlesR",
+  statut = "Pas d annotateur"
 WHERE annotation.idSeq = "EAR4567"; 
 
 -- Choix de l'annotateur par le validateur
 UPDATE annotation
-SET idAnnot = "JeanPierre_2",
+SET idAnnot = "JP91",
   statut = "A annoter"
 WHERE annotation.idSeq = "EAR4567";
 
@@ -130,7 +130,7 @@ WHERE annotation.idSeq = "EAR4567";
 
 -- Validation d'une annotation par un validateur
 UPDATE annotation 
-SET idValid2 = "CRoy_1999",
+SET idValid2 = "CharlesR",
   commentaire = 'blablablabla'
   statut = "Validation"
 WHERE annotation.idSeq = "EAR4567";
@@ -153,7 +153,7 @@ WHERE annotation.idSeq = "EAR4567";
 SELECT sujet, emailAnnot, dateCreation
 FROM forum, accessujet
 WHERE forum.idSujet = accessujet.idSujet
-  AND accessujet.idAnnot = "JeanPierre_2";
+  AND accessujet.idAnnot = "JP91";
 
 -- Pour afficher la derniere reponse d'un sujet
 SELECT response, emailAnnot, dateReponse
@@ -175,7 +175,7 @@ FROM forum
 WHERE idSujet = 10;
 
 -- Accès au sujet a certains utilisateurs
-INSERT INTO accessujet VALUES ('JeanPierre_2',36);
+INSERT INTO accessujet VALUES ('JP91',36);
 
 
 --AUTRE

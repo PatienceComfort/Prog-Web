@@ -92,12 +92,12 @@ CREATE TABLE accessujet(
 --# Création de la relation Annotation
 CREATE TABLE annotation ( 
 	numAnnot int,
-	idSeq VARCHAR(20),
+	idSeq VARCHAR(20) NOT NULL,
 	idAnnot  VARCHAR(20),
 	idValid1  VARCHAR(20),
 	idValid2  VARCHAR(20),
 	commentaire TEXT,
-	statut VARCHAR(20) CHECK (statut = 'Pas de validateur' OR statut = 'Pas d'annotateur' OR statut = 'A annoter' OR statut = 'A valider' OR statut = 'Validation' OR statut = 'Rejet'),
+	statut VARCHAR(20) CHECK (statut = 'Pas de validateur' OR statut = 'Pas d annotateur' OR statut = 'A annoter' OR statut = 'A valider' OR statut = 'Validation' OR statut = 'Rejet'),
 	PRIMARY KEY (numAnnot), 
 	CONSTRAINT fkannot1 FOREIGN KEY  (idSeq) REFERENCES transcrit (idSeq),
 	CONSTRAINT fkannot2 FOREIGN KEY  (idAnnot) REFERENCES utilisateur (username),
