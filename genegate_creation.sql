@@ -28,26 +28,26 @@ CREATE TABLE genome(
 	genre VARCHAR(20) NOT NULL,
 	espece VARCHAR(20) NOT NULL,
 	souche VARCHAR(20),
-	genomeComplet TEXT,
-	taille int,
+	genomeComplet TEXT NOT NULL,
+	taille int NOT NULL,
 	PRIMARY KEY (idGenome)
 );
 
--- #Creation de la relation transcrit --> car sequence est un mot deja pris 
+-- #Creation de la relation transcrit
 CREATE TABLE transcrit(
 	idSeq VARCHAR(20),  
-	nomGene VARCHAR(20),
-	nomProt VARCHAR(20),
+	nomGene VARCHAR(20) NOT NULL, 
+	nomProt VARCHAR(20) NOT NULL,
 	fonction  VARCHAR(100),
-	seqNt TEXT,
-	seqProt TEXT,
-	pos_debut int,
-	pos_fin int,
-	taille_transcrit int,
-	biotypeGene VARCHAR(100),
-	biotypeTranscrit VARCHAR(100),
+	seqNt TEXT NOT NULL,
+	seqProt TEXT NOT NULL,
+	pos_debut int NOT NULL,
+	pos_fin int NOT NULL,
+	taille_transcrit int NOT NULL,
+	biotypeGene VARCHAR(100) NOT NULL,
+	biotypeTranscrit VARCHAR(100) NOT NULL,
 	annotee BOOLEAN, -- False : non annotee, True : annotee
-	idGenome VARCHAR(20),
+	idGenome VARCHAR(20) NOT NULL,
 	PRIMARY KEY (idSeq), 
 	CONSTRAINT fkseq FOREIGN KEY  (idGenome) REFERENCES genome (idGenome)
 );
@@ -59,8 +59,8 @@ CREATE TABLE transcrit(
 CREATE TABLE forum (
 	idSujet serial,
 	sujet VARCHAR(100) NOT NULL UNIQUE,
-	dateCreation timestamp,
-	emailAnnot VARCHAR(100),
+	dateCreation timestamp NOT NULL,
+	emailAnnot VARCHAR(100) NOT NULL,
 	PRIMARY KEY (idSujet),
 	CONSTRAINT fkforum FOREIGN KEY (emailAnnot) REFERENCES utilisateur(email)
 );
@@ -68,10 +68,10 @@ CREATE TABLE forum (
 --# Création de la relation Réponse
 CREATE TABLE reponse( 
 	idReponse serial,
-	nomAnnot  VARCHAR(20),
+	nomAnnot  VARCHAR(20) NOT NULL,
 	response  TEXT NOT NULL,
-	dateReponse  timestamp,
-	idSujet  int,
+	dateReponse  timestamp NOT NULL,
+	idSujet  int NOT NULL,
 	PRIMARY KEY (idReponse), 
 	CONSTRAINT fkrep1 FOREIGN KEY  (nomAnnot) REFERENCES utilisateur (email),
 	CONSTRAINT fkrep2 FOREIGN KEY  (idSujet) REFERENCES Forum(idSujet)
