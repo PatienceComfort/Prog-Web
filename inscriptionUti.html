@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Ceci est une page HTML de test</title>
+		<link rel="stylesheet" type="text/css" href="./style1.css">
+	
+	<div id ="header"> <br> 
+		<h> GENEGATE </h> <br><br>
+			<div class = "searchbar">
+  			<form id="form"> 
+  			<input type="search" id="query" placeholder = "Search..">
+  			<button text-align = "center"> Rechercher </button>
+  			</form>
+			</div>
+	</div>
+
+	</head>
+
+	<body>
+
+		<div id ="menu"> 
+  		<li><a href="#">Home</a></li>
+  		<li><a href="#"> Access Forum</a></li>
+  		<li><a href="#"> Your Account </a></li>
+  		<li><a href="#"> Update </a></li>
+  		<li><a href="#"> Contact </a></li>
+		</div>
+
+		<div class = "LoginRegisterForm">
+		<form action="confirmInscript.php" method="POST">
+			<h1> Création de votre espace personnel </h1> 
+
+			<input type="radio" id="M"> 
+			<label> <b> M  <b> </label>
+
+			<input type="radio" id="M"> 
+			<label> <b> F  <b> </label> <br><br>
+
+ 
+			<label> <b> Nom : <b> </label>
+			<input type="text"  name="nom" placeholder="First Name"> <br><br>
+
+			<label> <b> Prenom : <b> </label>
+			<input type="text" name="prenom" placeholder="Last Name"> <br><br>
+
+			<label> <b> Date de naissance : <b> </label>
+			<input id="date" type="date" value="2020-11-22"> <br><br>
+
+			<label> <b> Email : <b> </label>
+			<input type="text" name="email" placeholder="Email address"> <br><br>
+
+			<label> <b> N° de téléphone : <b> </label>
+			<input type="tel"  name="phone" placeholder="Phone number"> <br><br>
+
+			<label> <b> Username : <b> </label>
+			<input type="text"  name="username" placeholder="Username"> <br><br>
+
+			<label> <b> Entrez votre mot de passe : <b> </label>
+			<input type="text"  name="password_1" placeholder="Password"> <br><br> 
+
+			<label> <b> Veuillez Confirmez votre mot de passe : <b> </label>
+			<input type="text"  name="password_2" placeholder="Confirm password"> <br><br>
+			
+			<label> <b> Veuillez choisir votre poste : <b> </label> <br><br>
+			<input type="radio" id="lec" name="lec" value = "Lecteur"> 
+			<label> <b> Lecteur  <b> </label> <br><br>
+
+			<input type="radio" id="annotateur" name="annotateur" value ="Annotateur"> 
+			<label> <b> Annotateur  <b> </label> <br><br>
+
+			<input type="radio" id="validateur" name="validateur" value ="Validateur"> 
+			<label> <b> Validateur  <b> </label> <br><br>
+            
+			
+			<button type="button" id = "signUp" onclick = "location.href = 'connexion.php'" name="button"> Se connecter </button>
+			
+			<button type="button" id = "Register" onclick = "location.href = 'MenuSite.php '" name="button"> S'inscrire </button>
+		</form>
+		</div>
+	</body>
+
+	<div class="bottombar">
+  	<a href="#news"> Website Plan</a>
+  	<a href="#news"> Policy</a>
+  	<a href="#news">About Us</a>
+  	<a href="#contact">Contact Us</a>
+	</div>
+
+	<div id="footer">
+		© 2020 GENEGATE
+	</div>
+
+</html>
