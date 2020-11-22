@@ -13,7 +13,8 @@ verifie si l'utilisateur existe dans la base de données:
 
 ### bottom pages sites 
 
-==> about us, contact, policy page : remplir page about us 
+==> website plan , contact, policy page : OK
+==> remplir page About us
 
 ### MenuSite.php
 
