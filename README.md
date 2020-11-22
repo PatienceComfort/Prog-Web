@@ -22,3 +22,6 @@ verifie si l'utilisateur existe dans la base de données:
 - page pour voir compte 
 - pages Forums
 - pages Search Genome, Sequences
+
+
+
