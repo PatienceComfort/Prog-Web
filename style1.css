@@ -1,0 +1,129 @@
+header{
+  font-family:Trattatello, fantasy;
+}
+
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, serif;
+    min-height: 100%;
+}
+
+#header {
+ left:10%
+ top : 10%;
+ font-family:Arial, Helvetica, serif;
+ font-size : 40px;
+ font-weight: bold;
+ text-align : center;
+ background-image: url('./dna.png');
+}
+
+#menu {
+    background-color: black;
+    top: 0;
+    left: 100px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 15px 0px black;
+}
+
+.searchbar {
+	position: absolute;
+	top : 22%;
+	right : 5%;
+	border-width: 1px;
+}
+
+.bottombar {
+position: fixed; 
+bottom: 5%; 
+right : 5%;
+}
+
+#footer {
+position: fixed; 
+bottom: 0%; 
+right : 0%;
+}
+
+.LoginRegisterForm{
+  width: 420px;
+  height: 480px;
+  background-color: transparent;
+  border-radius: 10%;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  padding-bottom: 10px;
+}
+
+.sidenav {
+  position : absolute;
+  top: 25%
+  width: 10em;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px;
+}
+
+.sidenav a {
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid black ;
+    color: black;
+    max-height: 55px;
+    padding: 10px 10px 10px 10px; 
+
+}
+
+.annotations {
+	position:absolute;
+	top: 45%;
+	center: 20%;
+	left: 15%;
+	background-color: #A7D489;
+	border-radius: 10px;
+	height: 400px;
+	width: 450px; 
+  border: 1px solid black;
+	text-align:center;
+}
+
+.annotate {
+	position:absolute;
+	top: 120%;
+	center: 20%;
+	left: 15%;
+
+}
+
+.btn {  
+  height: 100px; 
+  width: 200px;
+	margin-right: 40px;
+} 
+
+#searchSeq
+{
+  position: absolute;
+  border-radius: 10px;
+  top: 50% ;
+  right: 5%;
+  background-color: #A7D489;
+  padding: 10px 10px 10px 10px; 
+  border: 1px solid black;
+}
+
+#searchGenome
+{
+  position: absolute;
+  border-radius: 10px;
+  top: 90% ;
+  right: 5%;
+  background-color: #A7D489; 
+  padding: 10px 10px 10px 10px; 
+  border: 1px solid black;
+}
