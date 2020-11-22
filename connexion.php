@@ -22,12 +22,11 @@
 
 	<body>
 		<div id ="menu"> 
-  		<li><a href="#">Home</a></li>
-  		<li><a href="#"> Access Forum</a></li>
-  		<li><a href="#"> Your Account </a></li>
-  		<li><a href="#"> Update </a></li>
-  		<li><a href="#"> Contact </a></li>
-		</div>
+  			<li><a href="MenuSite">Home</a></li>
+  			<li><a href="#"> Access Forum</a></li>
+  			<li><a href="YourAccount.html"> Your Account </a></li>
+  			<li><a href="Contact.html"> Contact </a></li>
+			</div>
 
 
 
@@ -61,9 +60,9 @@
 
 	<div class="bottombar">
   	<a href="#news"> Website Plan</a>
-  	<a href="#news"> Policy</a>
-  	<a href="#news">About Us</a>
-  	<a href="#contact">Contact Us</a>
+  	<a href="policy.html"> Policy</a>
+  	<a href="About us.html">About Us</a>
+  	<a href="Contact.html">Contact Us</a>
 	</div>
 
 	<div id="footer">
