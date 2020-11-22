@@ -139,3 +139,11 @@ right : 0%;
   padding-bottom: 10px;
 
 }
+
+.webplan {
+  position: absolute;
+  border-radius: 10px;
+  top: 40% ;
+  left: 10%;
+
+}
