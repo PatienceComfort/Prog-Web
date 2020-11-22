@@ -127,3 +127,15 @@ right : 0%;
   padding: 10px 10px 10px 10px; 
   border: 1px solid black;
 }
+
+.Contact {
+  width: 420px;
+  height: 480px;
+  background-color: transparent;
+  border-radius: 10%;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  padding-bottom: 10px;
+
+}
