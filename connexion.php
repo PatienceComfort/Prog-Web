@@ -59,7 +59,7 @@
 	</body>
 
 	<div class="bottombar">
-  	<a href="#news"> Website Plan</a>
+  	<a href="#plan.html"> Website Plan</a>
   	<a href="policy.html"> Policy</a>
   	<a href="About us.html">About Us</a>
   	<a href="Contact.html">Contact Us</a>
