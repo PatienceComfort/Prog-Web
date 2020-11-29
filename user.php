@@ -2,7 +2,7 @@
 
 <?php
 
-   $db = pg_connect( "host=localhost port=5432 dbname=genegate user=abirami password=16011996"  );
+   $db = pg_connect( "host=localhost port=5432 dbname=genegate user= password="  );
    if(!$db) {
       echo "Error : Unable to open database\n";
    } else {
