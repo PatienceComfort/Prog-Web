@@ -26,11 +26,11 @@ verifie si l'utilisateur existe dans la base de données ==>  user.php
 ### MenuSite.php
 
 A faire :
-- voir si on peut chercher sur une banque depuis le site (PFAM, ensembl) ==> javascript 
-- page pour Annotated Sequences, Non annotated Sequences (affichage d'items des bases)
+- voir si on peut chercher sur une banque depuis le site (PFAM, ensembl)
+- page pour Annotated Sequences, Non annotated Sequences (affichage d'items des DB)
 - page Validation / Page Annotation 
 - pages Forums
 - pages Recherche Sequences
-
+- pages de l'Administrateur
 
 
