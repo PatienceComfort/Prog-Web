@@ -16,7 +16,7 @@ verifie si l'utilisateur existe dans la base de données ==>  user.php
 ==> website plan , contact, policy page : OK
 ==> remplir page About us
 
-### Pages de Recherche génome ==> MenuSite.php ==> genome.php ==> fiche.php  
+### Pages de Recherche génome ==> MenuSite.php ==> rech_genome.php ==> fiche.php  
 
 ==> à partir de menu, echerche de génome
 ==> recherche dans la base la requete et affiche une liste de resultats: genome.php
