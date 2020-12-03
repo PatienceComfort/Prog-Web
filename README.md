@@ -22,15 +22,15 @@ verifie si l'utilisateur existe dans la base de données ==>  user.php
 ==> recherche dans la base la requete et affiche une liste de resultats: genome.php
 ==> affiche une fiche génome ==> fiche.php
 
+==> pages Menu Annotateur,Validateur,Lecteur OK
+==> affichage des Bases OK
 
 ### MenuSite.php
 
 A faire :
 - voir si on peut chercher sur une banque depuis le site (PFAM, ensembl)
-- page pour Annotated Sequences, Non annotated Sequences (affichage d'items des DB)
 - page Validation / Page Annotation 
 - pages Forums
-- pages Recherche Sequences
 - pages de l'Administrateur
-
+- modifier mot de passe/deconnection/autorisation par l'admin ==> modification de la base 
 
