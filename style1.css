@@ -1,0 +1,213 @@
+#header {
+ top : 0px;
+ font-family:Arial, Helvetica, serif;
+ font-size : 30px;
+ font-weight: bold;
+ text-align : center;
+ background-image: url('https://previews.123rf.com/images/techdesign07/techdesign071901/techdesign07190100028/126082066-abstract-medical-background-dna-research-molecule-genetics-genome-dna-chain-genetic-analysis-art-con.jpg');
+}
+
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, serif;
+    min-height: 100%;
+    background-image: url('https://thumbs.dreamstime.com/t/boucle-abstraite-futuriste-de-fond-technologie-blockchain-113769290.jpg');
+}
+
+#menu {
+    background-color: black;
+    top: 0;
+    left: 100px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 15px 0px;
+}
+
+#searchSeq
+{
+  position: absolute;
+  border-radius: 5px;
+  top: 35% ;
+  left: 14%;
+  background-color:#69B991;
+  border: 1px solid black;
+  padding: 5px 5px 5px 5px; 
+}
+
+#searchGenome
+{
+  position: absolute;
+  border-radius: 5px;
+  top: 95% ;
+  left: 14%;
+  background-color:#69B991;
+  border: 1px solid black;
+  padding: 5px 5px 5px 5px; 
+}
+
+.bottombar {
+    background-color: black;
+    position: absolute;
+    top: 176%;
+    width: 1285px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 5px 0px ;
+}
+
+
+#footer {
+position: absolute; 
+top: 185%; 
+left: 50%;
+}
+
+.sidenav {
+  position : absolute;
+  top: 25%
+  width: 10em;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px;
+}
+
+.sidenav a {
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid black ;
+    color: black;
+    max-height: 55px;
+    padding: 10px 10px 10px 10px; 
+
+}
+
+
+
+#startAnnot {
+position: absolute; 
+top: 45%; 
+right: 1%;
+}
+
+#startValid {
+position: absolute; 
+top: 68%; 
+right: 31%;
+}
+
+#accederCompte {
+position: absolute; 
+top: 45%; 
+right: 31%;
+}
+#searchbar {
+position: absolute; 
+top: 35%; 
+right: 2%;	
+}
+#accederForum {
+position: absolute; 
+top: 45%; 
+right: 16%;
+}
+
+table {
+ border-collapse:collapse;
+ width:90%;
+ }
+
+
+.LoginRegisterContactForm{
+  width: 420px;
+  height: 480px;
+  background-color: transparent;
+  border-radius: 10%;
+  position: absolute;
+  top: 40%;
+  left: 20%;
+  padding-bottom: 10px;
+}
+
+
+
+.webplanPolicy {
+  position: absolute;
+  top: 35% ;
+  left: 15%;
+
+}
+
+
+.resultat {
+  position: absolute;
+  top: 30% ;
+  left: 15%;
+}
+
+#pageresults {
+  position: absolute;
+  top: 30% ;
+  left: 20%;
+}
+
+
+#user {
+position: absolute; 
+top: 40%; 
+right: 5%;
+}
+
+#searchGen2 {
+  position: absolute;
+  border-radius: 5px;
+  top: 35% ;
+  left: 14%;
+  background-color: #59AC80;
+  border: 1px solid black;
+  padding: 5px 5px 5px 5px; 
+}
+
+table {
+margin: auto;
+border: medium solid #F0F0F0;
+width: 60%;
+}
+
+th {
+border: thin solid #F0F0F0;
+padding: 10px;
+width: 60%;
+background-color: #D0E3FA;
+vertical-align: top;
+}
+td {
+border: thin solid #F0F0F0;
+padding: 10px;
+width: 60%;
+text-align: center;
+background-color: #ffffff;
+}
+
+td:first-child { 	
+	text-decoration-line: underline;
+	background:#59AC80;
+	color: white;
+	font-weight: bold;
+        border: 1px solid black; 
+}
+
+#uniprotPfamEnsembl {
+	position: absolute;
+	top: 40%;
+	right:20%;
+}
+#sviewer_x7zvq {
+position: absolute;
+	height:50%;
+	width:50%;
+}
+
