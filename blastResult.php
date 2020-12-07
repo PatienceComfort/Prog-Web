@@ -25,7 +25,6 @@
     //autres possibilites si mettre la sequence dans l'url ne fonctionne pas :
     //faire passer l'id et le type, se connecter a la base de donnees
     //et recuperer soit la seq aa, soit la seq nuc
-
 ?>
 
 
