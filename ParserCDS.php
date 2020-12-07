@@ -10,7 +10,7 @@
 
 <?php
 //Pour chaque fichier 
-$fasta_files = ['Escherichia_coli_cft073_cds.fa', 'Escherichia_coli_o157_h7_str_edl933_cds.fa','Escherichia_coli_str_k_12_substr_mg1655_cds.fa'];
+$fasta_files = ['Escherichia_coli_cft073_cds.fa', 'Escherichia_coli_o157_h7_str_edl933_cds.fa','Escherichia_coli_str_k_12_substr_mg1655_cds.fa', 'new_coli_cds.fa'];
 foreach($fasta_files as $fasta_file){
    //Ouverture du fichier
    $lines = file($fasta_file) or die("Unable to open file!");
@@ -29,6 +29,7 @@ foreach($fasta_files as $fasta_file){
 
          //recuperation des informations du cds actuel
          $bool_gene_symbol = strpos($line, 'gene_symbol'); //Verification de la presence du champ gene_symbol
+         $bool_description = strpos($line, 'description'); //Verification de la presence d'une description
          if ($bool_gene_symbol !== false) { //Si la ligne contient gene_symbol
             $results = array();
             $test = preg_match_all('#>(.+?) cds chromosome:(.+?):Chromosome:(.+?):(.+?):(.+?) gene:(.+?) gene_biotype:(.+?) transcript_biotype:(.+?) gene_symbol:(.+?) description:(.+)#', $line, $results);
@@ -44,18 +45,35 @@ foreach($fasta_files as $fasta_file){
             $gene_symbol = $results[9][0];
             $description = $results[10][0];
          }else{ //Si la ligne ne contient pas gene_symbol
-            $results = array();
-            $test = preg_match_all('#>(.+?) cds chromosome:(.+?):Chromosome:(.+?):(.+?):(.+?) gene:(.+?) gene_biotype:(.+?) transcript_biotype:(.+?) description:(.+)#', $line, $results);
-            $id_cds = $results[1][0];
-            $id_chr = $results[2][0];
-            $pos_deb = $results[3][0];
-            $pos_fin = $results[4][0];
-            $brin = $results[5][0];
-            $id_gene = $results[6][0];
-            $biotype_gene = $results[7][0];
-            $biotype_transcript = $results[8][0];
-            $gene_symbol = '';
-            $description = $results[9][0];
+            if($bool_description !== false){ //Si la ligne contient une description
+               $results = array(); 
+               $test = preg_match_all('#>(.+?) cds chromosome:(.+?):Chromosome:(.+?):(.+?)t_biotype:(.+?) description:(.+)#', $line, $results);
+               $id_cds = $results[1][0];
+               $id_chr = $results[2][0];
+               $pos_deb = $results[3][0];
+               $pos_fin = $results[4][0];
+               $taille = $pos_fin - $pos_deb;
+               $brin = $results[5][0];
+               $id_gene = $results[6][0];
+               $biotype_gene = $results[7][0];
+               $biotype_transcript = $results[8][0];
+               $gene_symbol = '';
+               $description = $results[9][0];
+            }else{ // Pour new_coli
+               $results = array();
+               $test = preg_match_all('#>(.+?) cds chromosome:(.+?):Chromosome:(.+?):(.+?)t_biotype:(.+?) description:(.+)#', $line, $results);
+               $id_cds = $results[1][0];
+               $id_chr = $results[2][0];
+               $pos_deb = $results[3][0];
+               $pos_fin = $results[4][0];
+               $taille = $pos_fin - $pos_deb;
+               $brin = '';
+               $id_gene = '';
+               $biotype_gene = '';
+               $biotype_transcript = '';
+               $gene_symbol = '';
+               $description = '';
+            }
          }
       }else{//La ligne correspond a la sequence du CDS
          $seq = $seq.$line;
