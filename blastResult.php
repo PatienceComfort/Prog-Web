@@ -10,7 +10,7 @@
    </head>
 
   
-   
+   <body>
 
 
 
@@ -163,9 +163,6 @@ $output = file_get_contents("https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=
 print $output;
 ?>
 
-<body>
-</body>
 
-    
-
+  </body>
 </html>
