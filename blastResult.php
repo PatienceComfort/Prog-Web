@@ -9,7 +9,7 @@
       <title>Resultats Blast</title>
    </head>
 
-   <body>
+  
    
 
 
@@ -18,16 +18,18 @@
     #
     # Recuperation des donnees dans l'url
     #=========================================
-    $str=$_SERVER['REQUEST_URI']; 
-	$keywords = preg_split("/=/", $str); //recuperation des mos cles dans l'url --> faire bien l'url dans la page Sequence.php
-    $seq = $keywords[1]; // seq recuperee de l'url (premier mot cle)
-    $type = $keywords[2]; // type sequence d'aa ("aa") ou de nucleotide ("nuc")
+$str=$_SERVER['REQUEST_URI']; 
+$keywords = preg_split("/=/", $str); //recuperation des mos cles dans l'url --> faire bien l'url dans la page Sequence.php
+$seq = $keywords[1]; // seq recuperee de l'url (premier mot cle)
+$type = $keywords[2]; // type sequence d'aa ("aa") ou de nucleotide ("nuc")
     //autres possibilites si mettre la sequence dans l'url ne fonctionne pas :
     //faire passer l'id et le type, se connecter a la base de donnees
     //et recuperer soit la seq aa, soit la seq nuc
+
 ?>
 
-<?php
+
+<?php 
 # $ID: blastphp.php, v 1.0 2017/02/21 21:02:21 Ashok Kumar T. $
 #
 # ===========================================================================
@@ -64,7 +66,9 @@ if($type=="aa"){
         $encoded_query = urlencode($seq_nucleotide);
         $base = 'nt';
         $blast_programm = 'blastn';
+    }
 }
+
 
 
 
@@ -159,6 +163,7 @@ $output = file_get_contents("https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=
 print $output;
 ?>
 
+<body>
 </body>
 
     
