@@ -21,9 +21,8 @@ foreach($fasta_files as $fasta_file){
       if ($bool_chevron !== false) { //Si le chevron a ete trouve
          //ajouter dans sql le cds precedent
          if (strlen($seq) > 0) {
-            //$sql = "INSERT INTO `seqs` (`ID`, `org_name`, `sequence`) VALUES ($id, $org_name, $value)";
             //mettre la bonne requete sql + les trucs pour se connecter
-            $query_sql = pg_query($db,"INSERT INTO genegate.transcrit (idSeq,nomGene,nomProt,fonction,seqNt,seqProt,pos_debut,pos_fin,taille_transcrit,biotypeGene,biotypeTranscrit,annotee,idGenome) VALUES ('$id_cds','$nom[0]','$nom[1]','$souche','$seq','$taille','id_chr')") or die ('Erreur connexion'. pg_last_error($db)); 
+            $query_sql = pg_query($db,"INSERT INTO genegate.transcrit (idSeq,nomGene,nomProt,fonction,seqNt,seqProt,pos_debut,pos_fin,taille_transcrit,biotypeGene,biotypeTranscrit,annotee,idGenome) VALUES ('$id_cds','$id_gene',NULL,'$description','$seq',NULL,'$pos_deb','$pos_fin','$taille','$biotype_gene','$biotype_transcript',1,'$id_chr')") or die ('Erreur connexion'. pg_last_error($db)); 
             echo "Insertion SQL \n";
          }
          $seq = ''; //Re initialisation de la sequence
@@ -37,6 +36,7 @@ foreach($fasta_files as $fasta_file){
             $id_chr = $results[2][0];
             $pos_deb = $results[3][0];
             $pos_fin = $results[4][0];
+            $taille = $pos_fin - $pos_deb;
             $brin = $results[5][0];
             $id_gene = $results[6][0];
             $biotype_gene = $results[7][0];
