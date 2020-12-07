@@ -8,7 +8,7 @@
 
 <?php
 //Pour chaque fichier 
-$fasta_files = ['Escherichia_coli_cft073_cds.fa', 'Escherichia_coli_o157_h7_str_edl933_cds.fa','Escherichia_coli_str_k_12_substr_mg1655_cds.fa', 'new_coli_cds.fa'];
+$fasta_files = ['Escherichia_coli_cft073_pep.fa', 'Escherichia_coli_o157_h7_str_edl933_pep.fa','Escherichia_coli_str_k_12_substr_mg1655_pep.fa', 'new_coli_pep.fa'];
 foreach($fasta_files as $fasta_file){
    //Ouverture du fichier
    $lines = file($fasta_file) or die("Unable to open file!");
