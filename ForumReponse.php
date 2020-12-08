@@ -47,7 +47,7 @@
         <form action="reponse_form.php" method="POST">
             <input type="txtArea" id="rep" placeholder = "Ecrire ici votre réponse.."> </textarea> <br><br>
             <input type="submit" value="Rechercher" /> </button> <br>
-            <input type=hidden id="variableAPasser" value=<?php echo $id_sujet; ?>/>
+            <input type=hidden id="idSujet" value=<?php echo $id_sujet; ?>/>
         </form>
     </body>
 
