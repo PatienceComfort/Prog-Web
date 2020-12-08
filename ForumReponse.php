@@ -43,9 +43,24 @@
 	            $keywords = preg_split("/=/", $str);
                 $id_sujet = $keywords[1]; // id sujet recupéré de l'url
         ?>
-        <!-- Formulaire d'ecriture de la reponse -->
+        <!-- Formulaire d'ecriture de la reponse (hidden pour passer l'id du sujet) -->
         <form action="reponse_form.php" method="POST">
             <input type="txtArea" id="rep" placeholder = "Ecrire ici votre réponse.."> </textarea> <br><br>
             <input type="submit" value="Rechercher" /> </button> <br>
             <input type=hidden id="variableAPasser" value=<?php echo $id_sujet; ?>/>
         </form>
+    </body>
+
+    <div class ="bottombar">
+        <li><a href="plan.php"> Plan du Site  </a> </li>
+        <li><a href="policy.php"> Conditions  </a> </li>
+        <li><a href="About us.php"> Qui sommes nous ? </a> </li>
+        <li><a href="Contact.php"> Nous contacter </a></li> 
+    </div> 
+
+
+    <div id = "footer"> 
+        © 2020 GeneGATE
+    </div> 
+
+</html>
