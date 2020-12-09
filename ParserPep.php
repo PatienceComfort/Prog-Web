@@ -18,7 +18,7 @@ foreach($fasta_files as $fasta_file){
       $bool_chevron = strpos($line, '>'); //Recherche du chevron qui caracterise le debut d'une ligne d'information dans un fichier fasta
       if ($bool_chevron !== false) { //Si le chevron a ete trouve
          //ajouter dans sql le cds precedent
-         if (strlen($seq) > 0) {
+         if ((strlen($seq) > 0) &&(strlen($id_cds))) {
             $query_sql = pg_query($db,"UPDATE genome.transcrit SET seqProt = '$seq' WHERE idSeq = '$id_cds';"); 
             echo "Update SQL \n";
          }
