@@ -1,5 +1,5 @@
 <?php
-  include "connect_db.php"
+  include "connect_db.php";
   $username = $_GET['username'];
   $query = pg_query($bdd, "SELECT username, email, validation_compte FROM utilisateur WHERE username = '$username'");
   $data = pg_fetch_array($query);
