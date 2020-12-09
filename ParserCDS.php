@@ -4,14 +4,18 @@
 <?php
    # connexion à la base : affiche "connection failed" si pas de connection
    # remplir user= password= sans espace
-   $db = pg_connect( "host=localhost dbname=genegate port=5432  user=_____  password=_____ "  ) or die('connection failed');
+   $db = pg_connect("host=localhost dbname=romane user=romane") or die('connection failed');
 ?>
 
 
 <?php
 //Pour chaque fichier 
-$fasta_files = ['Escherichia_coli_cft073_cds.fa', 'Escherichia_coli_o157_h7_str_edl933_cds.fa','Escherichia_coli_str_k_12_substr_mg1655_cds.fa', 'new_coli_cds.fa'];
+//$fasta_files = ['Escherichia_coli_cft073_cds.fa', 'Escherichia_coli_o157_h7_str_edl933_cds.fa','Escherichia_coli_str_k_12_substr_mg1655_cds.fa', 'new_coli_cds.fa'];
+$fasta_files = ['new_coli_cds.fa'];
 foreach($fasta_files as $fasta_file){
+   echo "<br>";
+   echo $fasta_file;
+   echo "<br>";
    //Ouverture du fichier
    $lines = file($fasta_file) or die("Unable to open file!");
    $seq = '';
@@ -20,9 +24,23 @@ foreach($fasta_files as $fasta_file){
       $bool_chevron = strpos($line, '>'); //Recherche du chevron qui caracterise le debut d'une ligne d'information dans un fichier fasta
       if ($bool_chevron !== false) { //Si le chevron a ete trouve
          //ajouter dans sql le cds precedent
-         if (strlen($seq) > 0) {
-            $query_sql = pg_query($db,"INSERT INTO genegate.transcrit (idSeq,nomGene,nomProt,fonction,seqNt,seqProt,pos_debut,pos_fin,taille_transcrit,biotypeGene,biotypeTranscrit,annotee,idGenome) VALUES ('$id_cds','$id_gene',NULL,'$description','$seq',NULL,'$pos_deb','$pos_fin','$taille','$biotype_gene','$biotype_transcript',1,'$id_chr')") or die ('Erreur connexion'. pg_last_error($db)); 
-            echo "Insertion SQL \n";
+         if ((strlen($seq) > 0) &&(strlen($id_cds))){
+            //echo "<br>";
+            //echo $id_cds;
+            $description = str_replace("'", " ", $description);
+            //echo "<br>";
+            //echo "INSERT INTO genegate.transcrit (idSeq,nomGene,nomProt,fonction,seqNt,seqProt,pos_debut,pos_fin,taille_transcrit,biotypeGene,biotypeTranscrit,annotee,idGenome) VALUES ('$id_cds','$id_gene',NULL,'$description','$seq',NULL,'$pos_deb','$pos_fin','$taille','$biotype_gene','$biotype_transcript',TRUE,'$id_chr')";
+            //echo "<br>";
+            $query_sql = pg_query($db,"INSERT INTO genegate.transcrit (idSeq,nomGene,nomProt,fonction,seqNt,seqProt,pos_debut,pos_fin,taille_transcrit,biotypeGene,biotypeTranscrit,annotee,idGenome) VALUES ('$id_cds','$id_gene',NULL,'$description','$seq',NULL,'$pos_deb','$pos_fin','$taille','$biotype_gene','$biotype_transcript',TRUE,'$id_chr');");
+            if(!$query_sql){
+               echo "Insertion ratee";
+               echo pg_last_error($db);
+               echo "INSERT INTO genegate.transcrit (idSeq,nomGene,nomProt,fonction,seqNt,seqProt,pos_debut,pos_fin,taille_transcrit,biotypeGene,biotypeTranscrit,annotee,idGenome) VALUES ('$id_cds','$id_gene',NULL,'$description','$seq',NULL,'$pos_deb','$pos_fin','$taille','$biotype_gene','$biotype_transcript',TRUE,'$id_chr')";
+               exit;
+            }else{
+               echo "Insertion SQL \n";
+            }
+            
          }
          $seq = ''; //Re initialisation de la sequence
 
@@ -46,7 +64,7 @@ foreach($fasta_files as $fasta_file){
          }else{ //Si la ligne ne contient pas gene_symbol
             if($bool_description !== false){ //Si la ligne contient une description
                $results = array(); 
-               $test = preg_match_all('#>(.+?) cds chromosome:(.+?):Chromosome:(.+?):(.+?)t_biotype:(.+?) description:(.+)#', $line, $results);
+               $test = preg_match_all('#>(.+?) cds chromosome:(.+?):Chromosome:(.+?):(.+?):(.+?) gene:(.+?) gene_biotype:(.+?) transcript_biotype:(.+?) description:(.+)#', $line, $results);
                $id_cds = $results[1][0];
                $id_chr = $results[2][0];
                $pos_deb = $results[3][0];
@@ -60,7 +78,7 @@ foreach($fasta_files as $fasta_file){
                $description = $results[9][0];
             }else{ // Pour new_coli
                $results = array();
-               $test = preg_match_all('#>(.+?) cds chromosome:(.+?):Chromosome:(.+?):(.+?)t_biotype:(.+?) description:(.+)#', $line, $results);
+               $test = preg_match_all('#>(.+?) cds chromosome:(.+?):Chromosome:(.+?):(.+?)#', $line, $results);
                $id_cds = $results[1][0];
                $id_chr = $results[2][0];
                $pos_deb = $results[3][0];

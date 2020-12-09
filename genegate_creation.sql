@@ -38,7 +38,7 @@ CREATE TABLE transcrit(
 	idSeq VARCHAR(20),  
 	nomGene VARCHAR(20) NOT NULL, 
 	nomProt VARCHAR(20),
-	fonction  VARCHAR(100),
+	fonction  VARCHAR(500),
 	seqNt TEXT NOT NULL,
 	seqProt TEXT,
 	pos_debut int NOT NULL,
@@ -48,8 +48,8 @@ CREATE TABLE transcrit(
 	biotypeTranscrit VARCHAR(100),
 	annotee BOOLEAN, -- False : non annotee, True : annotee
 	idGenome VARCHAR(20) NOT NULL,
-	PRIMARY KEY (idSeq), 
-	CONSTRAINT fkseq FOREIGN KEY  (idGenome) REFERENCES genome (idGenome)
+	PRIMARY KEY (idSeq) --, 
+	--CONSTRAINT fkseq FOREIGN KEY  (idGenome) REFERENCES genome (idGenome)
 );
 
 --FORUM
