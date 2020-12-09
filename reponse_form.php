@@ -41,7 +41,7 @@
             //Connexion a la base
             $db = pg_connect("host=localhost dbname=genegate port=5432  user=abirami  password=16011996") or die('connection failed');
             //Recuperation des informations
-            $id_utilisateur = $_SESSION['id_utilisateur'];
+            $id_utilisateur = $_SESSION['username'];
             $idSujet = $_POST['idSujet'];
             $text = $_POST['rep'];
             $datetime = time();
