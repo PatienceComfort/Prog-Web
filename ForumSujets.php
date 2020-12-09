@@ -52,7 +52,7 @@
                 }
                 echo pg_last_error($db);
                 //Requete sql pour savoir quelles discussions affichees
-                $res = pg_query($db,"SELECT forum.idSujet, forum.sujet, forum.nomAnnot, forum.dateCreation FROM genegate.forum, genegate.accessujet WHERE accessujet.nomAnnot = '".$id_utilisateur."' AND forum.idSujet = forum.idSujet ORDER BY forum.dateCreation DESC;");
+                $res = pg_query($db,"SELECT forum.idSujet, forum.sujet, forum.nomAnnot, forum.dateCreation FROM genegate.forum, genegate.accessujet WHERE accessujet.nomAnnot = '".$id_utilisateur."' AND forum.idSujet = accessujet.idSujet ORDER BY forum.dateCreation DESC;");
                 if (!$res) {
                     echo "Une erreur s'est produite.<br>";
                     exit;
@@ -95,7 +95,39 @@
             </div>
         </table>
         <div style="text-align:center">  
-            <input type="button" class="button_active" onclick="location.href='ForumCreationSujet.php';" value="Nouveau Sujet" />
+            <form action="sujet_form.php" method="get">
+                <label for="Title">Titre du sujet:</label>
+                <input type="text" id="Title" name="Titre" placeholder="Titre..."><br><br>
+                <br> Choisir les participants <br>
+                <?php
+                //Connexion a la base de donnee
+                $db = pg_connect( "host=localhost dbname=romane user=romane");
+                if(!$db) {      
+                    echo "Error : Unable to open database\n";
+                }
+                //Requete pour trouver tous les annotateurs/validateurs
+                $query = "SELECT username FROM genegate.utilisateur WHERE statut = 'Validateur' UNION ";
+                $query .= "SELECT username FROM genegate.utilisateur WHERE statut ='Annotateur';";
+                $res_nom = pg_query($db, $query);
+                if (!$res_nom) {
+                    echo "Une erreur s'est produite.<br>";
+                    echo pg_last_error($conn);
+                    exit;
+                }
+                //Affficher d'une checkbox par utilisateur
+                if(pg_num_rows($res_nom) != 0) {
+                    while ($row = pg_fetch_assoc($res_nom) ){
+                        $username = $row['username'];
+                        echo "<br> <input type='checkbox' name='amis[]' value='";
+                        echo $username."' />";
+                        echo "<label for='".$username."'> ".$username." </label>";
+                    }
+                }
+                pg_close($db);
+                ?>
+                <br>
+                <input type="submit" id = "Poster" value = "Poster">
+            </form>
         </div>  
         
         
