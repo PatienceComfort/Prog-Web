@@ -37,18 +37,20 @@
             <button id="close-image" name="img" onclick = "location.href = 'Genome.php'"> <img src="https://genome.cshlp.org/content/19/10/1801/F1.large.jpg" height="70" width="115"><br> Base Génome </button> <br>
         
 	    </div>
-
+        
         <table style='width:40%';>
 	        <div id="pageresults">
-	            <h2> Résultats :</h2>
+	            <h2> Vos sujets :</h2>
                 <?php
+                //Recuperation de l'id de l'utilisateur
+                $id_utilisateur = $_SESSION['username'];
                 //Connexion a la base de donnee
-                $db = pg_connect( "host=localhost port=5432 dbname=genegate user=abirami password=16011996"  );
+                //$db = pg_connect( "host=localhost port=5432 dbname=genegate user=abirami password=16011996"  );
+                $db = pg_connect( "host=localhost dbname=romane user=romane"  );
                 if(!$db) {      
                     echo "Error : Unable to open database\n";
                 }
-                //Recuperation de l'id de l'utilisateur
-                $id_utilisateur = $_SESSION['id_utilisateur'];
+                echo pg_last_error($db);
                 //Requete sql pour savoir quelles discussions affichees
                 $res = pg_query($db,"SELECT forum.idSujet, forum.sujet, forum.nomAnnot, forum.dateCreation FROM genegate.forum, genegate.accessujet WHERE accessujet.nomAnnot = '".$id_utilisateur."' AND forum.idSujet = forum.idSujet ORDER BY forum.dateCreation DESC;");
                 if (!$res) {
@@ -57,27 +59,46 @@
                 }
                 //Si aucun resulat
                 if(pg_num_rows($res) == 0) {
-                    echo "Aucune discussion a afficher.<br>";
+                    echo "Aucune discussion à afficher.<br>";
                 }
                 //Si il y a des discussions a afficher
                 if(pg_num_rows($res) != 0) {
-                    echo " <td colspan='3'> Sujet Identifiant_Creation Date_Creation </td>";
+                    $flag = 0;
                     while ($row = pg_fetch_assoc($res) ){ //On affiche les sujets ligne par ligne
-                        echo "<br><tr>
-                        <td> <a href='ForumDiscussions.php?id=".$row['idSujet']."'> ".$row['sujet']."</a> </td>  
-                        <td>".$row['nomAnnot']."</td>
-                        <td>".$row['dateCreation']."</td>
-                        </tr>";
+                        if ($flag == 0){
+                           echo "<br><tr>
+                            <tr><td>Sujet</td>
+                            <td>Date de Creation</td>
+                            <td>Identifiant de Creation</td>
+                            </tr>
+                            <td> <a href='ForumDiscussions.php?id=".$row['idsujet']."'> ".$row['sujet']."</a> </td> 
+                            <td>".$row['datecreation']."</td>
+                            <td>".$row['nomannot']."</td>
+                            </tr>";
+                            $flag = 1; 
+                        }
+                        else{
+                            echo "<br><tr>
+                            <td> <a href='ForumDiscussions.php?id=".$row['idsujet']."'> ".$row['sujet']."</a> </td> 
+                            <td>".$row['datecreation']."</td>
+                            <td>".$row['nomannot']."</td>
+                            </tr>";
+                        }
+                        
                     
                     } //"id= " permet de savoir sur quel sujet affiche sur la page sujet
                 }
                 //Deconnexion
+                echo $row['idsujet'];
                 pg_close($db);
                 ?>
-        </table>
             </div>
+        </table>
+        <div style="text-align:center">  
+            <input type="button" class="button_active" onclick="location.href='ForumCreationSujet.php';" value="Nouveau Sujet" />
+        </div>  
         
-        <input type="button" class="button_active" onclick="location.href='ForumCreationSujet.php';" value="Nouveau Sujet"/>
+        
 
 
 

@@ -43,12 +43,13 @@
 	            <h2> Résultats :</h2>
                 <?php
                 //Connexion a la base de donnee
-                $db = pg_connect( "host=localhost port=5432 dbname=genegate user=abirami password=16011996"  );
+                //$db = pg_connect( "host=localhost port=5432 dbname=genegate user=abirami password=16011996"  );
+                $db = pg_connect( "host=localhost dbname=romane user=romane");
                 if(!$db) {      
                     echo "Error : Unable to open database\n";
                 }
                 //Recuperation de l'id du sujet
-                $str=$_SERVER['REQUEST_URI']; 
+                $str=$_SERVER['REQUEST_URI'];
 	            $keywords = preg_split("/=/", $str);
 	            $id_sujet = $keywords[1]; // id sujet recupéré de l'url
                 //Requete sql pour savoir quelles reponses affichees
@@ -63,13 +64,27 @@
                 }
                 //Si il y a des discussions a afficher
                 if(pg_num_rows($res) != 0) {
-                    echo " <td colspan='3'> Date_Reponse Identifiant_Annot Reponse </td>";
+                    $flag = 0;
                     while ($row = pg_fetch_assoc($res) ){
-                        echo "<br><tr>
-                        <td>".$row['dateReponse']."</a> </td>  
-                        <td>".$row['nomAnnot']."</td>
-                        <td>".$row['response']."</td>
-                        </tr>";
+                        if($flag == 0){
+                            echo "<br><tr>
+                                <tr><td>Date de Réponse</td>
+                                    <td>Identifiant de l'Annotateur</td>
+                                    <td>Reponse</td>
+                                </tr>
+                                <tr>
+                                    <td>".$row['datereponse']."</a> </td>  
+                                    <td>".$row['nomannot']."</td>
+                                    <td>".$row['response']."</td>
+                                </tr>";
+                        }else{
+                            echo "<br><tr>
+                                <td>".$row['datereponse']."</a> </td>  
+                                <td>".$row['nomannot']."</td>
+                                <td>".$row['response']."</td>
+                                </tr>";
+                        }
+                        
                     
                     }
                 }
@@ -79,7 +94,9 @@
         </table>
             </div>
         
-        <input type="button" class="button_active" onclick="location.href='ForumReponse.php?id=<?php echo $id_sujet;?>';" value="Repondre"/>
+        <div style="text-align:center">  
+             <input type="button" class="button_active" onclick="location.href='ForumReponse.php?id=<?php echo $id_sujet;?>';" value="Repondre"/>
+        </div> 
 
 
 
