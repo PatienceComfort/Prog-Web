@@ -37,21 +37,30 @@
             <button id="close-image" name="img" onclick = "location.href = 'Genome.php'"> <img src="https://genome.cshlp.org/content/19/10/1801/F1.large.jpg" height="70" width="115"><br> Base Génome </button> <br>
         
         </div>
+        <div style="text-align:center">  
         <?php
             //Connexion a la base
-            $db = pg_connect("host=localhost dbname=genegate port=5432  user=abirami  password=16011996") or die('connection failed');
+            //$db = pg_connect("host=localhost dbname=genegate port=5432  user=abirami  password=16011996") or die('connection failed');
+            $db = pg_connect("host=localhost dbname=romane user=romane") or die('connection failed');
+            //Recuperation des informations
+ 
             //Recuperation des informations
             $id_utilisateur = $_SESSION['username'];
-            $idSujet = $_POST['idSujet'];
-            $text = $_POST['rep'];
-            $datetime = time();
+            $idSujet = $_GET['idSujet'];
+            $text = $_GET['rep'];
+            $timestamp = time();
+            $datetime = date("d-m-Y H:i:s",$timestamp);
             //Insertion de la reponse dans la base
-            $res = pg_query($db,"INSERT INTO genegate.reponse(idReponse,nomAnnot,response,dateReponse,idSujet) 
+            pg_query($db,"INSERT INTO genegate.reponse(idReponse,nomAnnot,response,dateReponse,idSujet) 
             VALUES(DEFAULT,'$id_utilisateur','$text','$datetime','$idSujet');");
+            echo pg_last_error($db);
             //Deconnexion
-            pg_close($db);        
+            pg_close($db);
+            echo "Votre réponse a bien été envoyée.";
+            echo "<a  href='ForumDiscussions.php?id=".$idSujet."'>  Retour à la discussion</a> ";
+                    
         ?>
-        Votre réponse a bien été envoyée
+         </div> 
     </body>
 
     <div class ="bottombar">

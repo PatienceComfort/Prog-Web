@@ -40,7 +40,7 @@
 
         <table style='width:40%';>
 	        <div id="pageresults">
-	            <h2> Résultats :</h2>
+	            <h2> Discussion :</h2>
                 <?php
                 //Connexion a la base de donnee
                 //$db = pg_connect( "host=localhost port=5432 dbname=genegate user=abirami password=16011996"  );
@@ -77,6 +77,7 @@
                                     <td>".$row['nomannot']."</td>
                                     <td>".$row['response']."</td>
                                 </tr>";
+                            $flag = 1;
                         }else{
                             echo "<br><tr>
                                 <td>".$row['datereponse']."</a> </td>  
@@ -94,8 +95,12 @@
         </table>
             </div>
         
-        <div style="text-align:center">  
-             <input type="button" class="button_active" onclick="location.href='ForumReponse.php?id=<?php echo $id_sujet;?>';" value="Repondre"/>
+         <div style="text-align:center">  
+            <form action="reponse_form.php" method="get">
+                <input type="hidden" name="idSujet" value=<?php echo $id_sujet; ?>>
+                Votre reponse <input type="text" name="rep"><br>
+            <input type="submit">
+            </form>
         </div> 
 
 
