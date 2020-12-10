@@ -1,16 +1,16 @@
-
 <!DOCTYPE html>
 
 <?php
    # connexion à la base : affiche "connection failed" si pas de connection
    # remplir user= password= sans espace
-   $db = pg_connect("host=localhost dbname=romane user=romane") or die('connection failed');
+   $db = pg_connect("host=localhost dbname=genegate user=abirami password=16011996") or die('connection failed');
 ?>
 
 
 <?php
 //Pour chaque fichier 
-$fasta_files = ['Escherichia_coli_cft073_cds.fa', 'Escherichia_coli_o157_h7_str_edl933_cds.fa','Escherichia_coli_str_k_12_substr_mg1655_cds.fa', 'new_coli_cds.fa'];
+$fasta_files = ['new_coli_cds.fa'];
+
 foreach($fasta_files as $fasta_file){
    echo "<br>";
    echo $fasta_file;
@@ -30,11 +30,17 @@ foreach($fasta_files as $fasta_file){
             //echo "<br>";
             //echo "INSERT INTO genegate.transcrit (idSeq,nomGene,nomProt,fonction,seqNt,seqProt,pos_debut,pos_fin,taille_transcrit,biotypeGene,biotypeTranscrit,annotee,idGenome) VALUES ('$id_cds','$id_gene',NULL,'$description','$seq',NULL,'$pos_deb','$pos_fin','$taille','$biotype_gene','$biotype_transcript',TRUE,'$id_chr')";
             //echo "<br>";
-            $query_sql = pg_query($db,"INSERT INTO genegate.transcrit (idSeq,nomGene,nomProt,fonction,seqNt,seqProt,pos_debut,pos_fin,taille_transcrit,biotypeGene,biotypeTranscrit,annotee,idGenome) VALUES ('$id_cds','$id_gene',NULL,'$description','$seq',NULL,'$pos_deb','$pos_fin','$taille','$biotype_gene','$biotype_transcript',TRUE,'$id_chr');");
+	    if ((strlen($biotype_gene) > 2) && (strlen($biotype_transcript) > 2)) { 
+	$query_sql = pg_query($db,"INSERT INTO genegate.transcrit (idSeq,nomGene,nomProt,fonction,seqNt,seqProt,pos_debut,pos_fin,taille_transcrit,biotypeGene,biotypeTranscrit,annotee,idGenome) VALUES ('$id_cds','$id_gene',NULL,'$description','$seq',NULL,'$pos_deb','$pos_fin','$taille','$biotype_gene','$biotype_transcript','yes','$id_chr');");	
+	} else {
+		$query_sql = pg_query($db,"INSERT INTO genegate.transcrit (idSeq,nomGene,nomProt,fonction,seqNt,seqProt,pos_debut,pos_fin,taille_transcrit,biotypeGene,biotypeTranscrit,annotee,idGenome) VALUES ('$id_cds','$id_gene',NULL,'$description','$seq',NULL,'$pos_deb','$pos_fin','$taille','$biotype_gene','$biotype_transcript','no','$id_chr');");
+	echo "query2";	
+	}
+            
             if(!$query_sql){
                echo "Insertion ratee";
                echo pg_last_error($db);
-               echo "INSERT INTO genegate.transcrit (idSeq,nomGene,nomProt,fonction,seqNt,seqProt,pos_debut,pos_fin,taille_transcrit,biotypeGene,biotypeTranscrit,annotee,idGenome) VALUES ('$id_cds','$id_gene',NULL,'$description','$seq',NULL,'$pos_deb','$pos_fin','$taille','$biotype_gene','$biotype_transcript',TRUE,'$id_chr')";
+               //echo "INSERT INTO genegate.transcrit (idSeq,nomGene,nomProt,fonction,seqNt,seqProt,pos_debut,pos_fin,taille_transcrit,biotypeGene,biotypeTranscrit,annotee,idGenome) VALUES ('$id_cds','$id_gene',NULL,'$description','$seq',NULL,'$pos_deb','$pos_fin','$taille','$biotype_gene','$biotype_transcript',TRUE,'$id_chr')";
                exit;
             }else{
                echo "Insertion SQL \n";
@@ -102,6 +108,32 @@ pg_close($db);
 
 ?>
 
+<?php
+$db = pg_connect("host=localhost dbname=genegate port=5432  user=abirami  password=16011996") or die('connection failed');
+$res = pg_query($db,"SELECT * FROM genegate.transcrit");
+$idannot=1;
+	if(pg_num_rows($res) != 0) {
+		while ($row = pg_fetch_assoc($res) ){
+		$idseq=$row['idseq'];
+		$annot="AN".$idannot;
+		if ($row['annotee']=='yes') {
+			$statut='Validation';
+			$query = pg_query($db,"INSERT INTO genegate.annotation (numAnnot,idSeq,statut) VALUES ('$idannot','$idseq','$statut')") or die ('Erreur connexion'. pg_last_error($db));
+			$idannot ++;
+			echo "Insertion2 SQL \n";
+							
+			}
+		else {
+			$statut='Pas d annotateur';
+			$query = pg_query($db,"INSERT INTO genegate.annotation (numAnnot,idSeq,statut) VALUES ('$idannot','$idseq','$statut')") or die ('Erreur connexion'. pg_last_error($db));
+         		echo "Insertion3 SQL \n";
+			$idannot ++;
+			
+		}
+		}
+	} 
+
+?>
 
 <html lang="fr">
 
@@ -123,4 +155,3 @@ pg_close($db);
     
 
 </html>
-
