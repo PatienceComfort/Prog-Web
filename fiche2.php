@@ -124,12 +124,12 @@ $url_pfam = "http://pfam.xfam.org/protein/{$results_uniprot[1][0]}";
 	<button id="close-image" name="img" onclick = "location.href = '<?php echo $url_ensembl;?>'"><img src="https://avatars2.githubusercontent.com/u/5832463?s=280&v=4" height="70" width="115""><br> Ensembl </button> <br>
 	Pour obtenir les résultats de BLASTn contre la base nt:<br><br>
             <form action="blastResult.php" method="get">
-                <input type="hidden" name="seqnt" value=<?php echo $seqnuc; ?>>
+                <input type="hidden" name="seqnt" value=<?php echo preg_replace('/\s+/','',$seqnuc);?>>
             	<input type="submit" value="BLASTn">
             </form>
 	Pour obtenir les résultats de BLASTp contre la base nr:<br><br>
 			<form action="blastResult2.php" method="get">
-                <input type="hidden" name="seqaa" value=<?php echo $seqaa; ?>>
+                <input type="hidden" name="seqaa" value=<?php echo preg_replace('/\s+/','',$seqaa); ?>>
             	<input type="submit" value="BLASTp">
             </form>
 
