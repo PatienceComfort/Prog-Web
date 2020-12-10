@@ -59,7 +59,7 @@
 	$info_formulaire = ["id","query","souche","espece","genre"];
 	$col_table = ["idgenome","genomecomplet","souche","espece","genre"];
 	for ($i = 1; $i <= 5; $i++) {
-		$ch = $info_formulaire[$i]
+		$ch = $info_formulaire[$i];
 		$col = $col_table[$i];
 		if (!empty($_POST[$ch])){ //Si la champ est rempli
 			if (strlen($query_sql) > 5){//Si la requete n'est pas vide
