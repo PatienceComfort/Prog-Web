@@ -57,21 +57,52 @@
   
 	</div>
 
+	</div>
+
+
 	<div id ="searchSeq">
+	<form action="rech_sequence.php" method="POST">
 	<h3> Rechercher une séquence </h3>
 	<form>
 
 	Sequence ID :
-​	<textarea id="txtArea" rows="1" cols="10" id="query" placeholder = "Search.."> </textarea> <br><br>
-		
-	Séquence : <br>
-​	<textarea id="txtArea" rows="7" cols="60" id="query" placeholder = "Search.."> </textarea> <br><br>
+​	<input type="text" placeholder="ID" name="id_seq" >  <br><br>
+
+	Génome ID :
+	<input type="text" placeholder="ID" name="id_genome" >
+
+	Genre : 
+	<input type="text" placeholder="Genre" name="genre" > <br><br>
+	
+	Espèce :
+	<input type="text" placeholder="Espèce" name="espece" >
+
+	Souche :
+	<input type="text" placeholder="Souche" name="souche" > <br><br>
+
+	Séquence nulcéotidique (motif...) : <br>
+​	<textarea id="txtArea" rows="10" cols="60" name="query_nuc" placeholder = "Search.."> </textarea> <br><br>
+ 	
+	Séquence protéique (motif...) : <br>
+​	<textarea id="txtArea" rows="10" cols="60" name="query_prot" placeholder = "Search.."> </textarea> <br><br>
+
+	Taille du transcrit :
+	<input type="text" placeholder="taille" name="taille" > <br><br>
+	Position de début :
+	<input type="text" placeholder="début" name="debut" > <br><br>
+	Position de fin :
+	<input type="text" placeholder="fin" name="fin" > <br><br>
+	
+	Nom du gène :
+	<input type="text" placeholder="gène" name="nomgene" > <br><br>
+	Biotype du gène :
+	<input type="text" placeholder="biotype" name="biotypegene" > <br><br>
+	Biotype du transcrit :
+	<input type="text" placeholder="biotype" name="biotypetranscrit" > <br><br>
+	Fonction :
+	<input type="text" placeholder="mot-clé" name="fonction" > <br><br>
  		
-	Type :
- 	<select> 
-  	<option value="nucl"> Nucléotique </option>
-  	<option value="2"> Proteique </option>
-	</select> <br><br>
+
 
 	<input type="submit" value="Rechercher" /> </button> <br>
 	</form>
