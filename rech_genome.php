@@ -65,7 +65,7 @@
 			if (strlen($query_sql) > 5){//Si la requete n'est pas vide
 				$query_sql .= "INTERSECT SELECT * FROM genegate.genome WHERE ".$col."='".$_POST[$ch]."'";
 			}else{ // Si la requete est vide
-				$query_sql .= "INTERSECT SELECT * FROM genegate.genome WHERE ".$col."='".$_POST[$ch]."'";
+				$query_sql .= "SELECT * FROM genegate.genome WHERE ".$col."='".$_POST[$ch]."'";
 			}
 		}
 	}
