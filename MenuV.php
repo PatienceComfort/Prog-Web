@@ -38,7 +38,7 @@
 	</div>
 
 	<div id="user">
-	<?php echo Bonjour, $_SESSION['username']?>
+	<?php echo "Bonjour, ".$_SESSION['username'];?>
 	</div>
 
 	<div class="sidenav"> <br>
