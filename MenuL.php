@@ -97,7 +97,7 @@
 		<input type="text" placeholder="Souche" name="souche" > <br><br>
 
 		Séquence génome : <br>
-​		<textarea id="txtArea" rows="10" cols="60" id="query" placeholder = "Search.."> </textarea> <br><br>
+​		<textarea id="txtArea" rows="10" cols="60" name="query" placeholder = "Search.."> </textarea> <br><br>
 
 		<input type="submit" value="Rechercher" /> </button> <br>
 
