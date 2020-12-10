@@ -106,7 +106,7 @@ if(strlen($query_sql) > 5){ //Si la requete n'est pas vide
 		echo " <td colspan='5'> IDtranscrit Genre Espece Souche Taille </td>";
 		while ($row = pg_fetch_assoc($res) ){
 		echo "<br><tr>
-            	<td> <a href='fiche.php?id=".$row['idseq']."'> ".$row['idseq']."</a> </td>  
+            	<td> <a href='fiche2.php?id=".$row['idseq']."'> ".$row['idseq']."</a> </td>  
 	    	<td>".$row['genre']."</td>
 	    	<td>".$row['espece']."</td>
 	    	<td>".$row['souche']."</td>
