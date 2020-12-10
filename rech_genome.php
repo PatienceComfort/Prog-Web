@@ -119,6 +119,7 @@
 	}
 	
 	if(pg_num_rows($res) != 0) { //Affichage de tous les resultats
+		$array_id = array();
 		echo " <td colspan='5'> ID Genre Espece Souche Taille </td>";
 		while ($row = pg_fetch_assoc($res) ){
 		echo "<br><tr>
@@ -128,6 +129,7 @@
 	    	<td>".$row['souche']."</td>
 		<td>".$row['taille']."</td>
        		</tr>";
+		$array_id[] = $row['idgenome'];
 		
 		} // l'identifiant renvoie vers le lien de la fiche ==> ?id= dans l'url : sert à retrouver l'id et sert à partir d'une page fiche.php afficher toutes les résultats/génome que l'utilisateur veut voir.
 
@@ -135,8 +137,21 @@
 
 pg_close($db);
 ?>
+
+
+
 </table>
 </div>
+
+<div style="text-align:center">
+			Pour obtenir le fichier fasta correspondant aux résultats:<br><br>
+			<form action="sortiefa.php" method="post">
+				<?php
+				echo "<input type='hidden' name='my_form_data' value='".htmlspecialchars(serialize($array_id))."'>";
+				?>
+            	<input type="submit" value="fasta">
+            </form>
+</div> 
 
 </body>
 
