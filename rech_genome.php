@@ -84,8 +84,6 @@
 	if(strlen($query_sql) > 5){ //Si la requete n'est pas vide
 		$query_sql .= ";";
 		$res = pg_query($db,$query_sql);
-	}else{
-		$res = pg_query($db,"SELECT * FROM genegate.genome WHERE genre='".$_POST["genre"]."';");
 	}
 	/*if (!empty($_POST["id"])) { 
 		$res = pg_query($db,"SELECT * FROM genegate.genome WHERE idgenome='".$_POST["id"]."';");
