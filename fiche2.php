@@ -57,7 +57,8 @@
 
 	<h1> Fiche  </h1>
 	<?php
-	$db = pg_connect( "host=localhost port=5432 dbname=genegate user=abirami password=16011996");
+	//$db = pg_connect( "host=localhost port=5432 dbname=genegate user=abirami password=16011996");
+	$db = pg_connect("host=localhost dbname=romane user=romane");
 	if(!$db) {      
 		echo "Error : Unable to open database\n";
 	}
@@ -79,7 +80,8 @@
 		<tr><th> Biotype transcrit </th><td>".$row['biotypetranscrit']."</td></tr>
 		<tr><th> possition début </th><td>".$row['pos_debut']."</td></tr>
 	        <tr><th> position fin </th><td>".$row['pos_fin']."</td></tr>";
-		$seq=$row['seqnt'];
+		$seqnuc=$row['seqnt'];
+		$seqaa = $row['seqprot'];
 		$transcrit=$row['nomgene'];
 	}
 //Recuperation de l'url bacteria.ensembl
@@ -101,24 +103,37 @@ $results_uniprot = array();
 $test_uniprot = preg_match_all('#<a href="http://pfam.xfam.org/protein/(.+?)" onclick#', $txt_uniprot, $results_uniprot);
 $url_pfam = "http://pfam.xfam.org/protein/{$results_uniprot[1][0]}";	
 ?>
-</table>
-<h4>Séquence : </h4>
-	<textarea name="txt" cols="65" rows="10" id="txt1">
-    <?php echo $seq; ?> 
-	</textarea>
 
+</table>
+<h4>Séquence nucléotidique: </h4>
+	<textarea name="txt" cols="65" rows="10" id="txt1">
+    <?php echo $seqnuc; ?> 
+	</textarea>
+<h4>Séquence protéique: </h4>
+	<textarea name="txt" cols="65" rows="10" id="txt1">
+    <?php echo $seqaa; ?> 
+	</textarea>
 
 
 </div>
 <div id="uniprotPfamEnsembl">
-      Fiches Références : <br><br>
+    Fiches Références : <br><br>
 
 	<button id="close-image" name="img" onclick = "location.href = '<?php echo $url_uniprot;?>'"> <img src="https://avatars1.githubusercontent.com/u/9991058?s=280&v=4" height="70" width="115""> <br> Uniprot </button> <br><br>	
 	<button id="close-image" name="img" onclick = "location.href = '<?php echo $url_pfam;?>'"><img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Pfam_logo.gif" height="70" width="115""><br> PFAM </button> <br><br>
-		<button id="close-image" name="img" onclick = "location.href = '<?php echo $url_ensembl;?>'"><img src="https://avatars2.githubusercontent.com/u/5832463?s=280&v=4" height="70" width="115""><br> Ensembl </button> <br>
+	<button id="close-image" name="img" onclick = "location.href = '<?php echo $url_ensembl;?>'"><img src="https://avatars2.githubusercontent.com/u/5832463?s=280&v=4" height="70" width="115""><br> Ensembl </button> <br>
+	Pour obtenir les résultats de BLASTn contre la base nt:<br><br>
+            <form action="blastResult.php" method="get">
+                <input type="hidden" name="seqnt" value=<?php echo $seqnuc; ?>>
+            	<input type="submit" value="BLASTn">
+            </form>
+	Pour obtenir les résultats de BLASTp contre la base nr:<br><br>
+			<form action="blastResult2.php" method="get">
+                <input type="hidden" name="seqaa" value=<?php echo $seqaa; ?>>
+            	<input type="submit" value="BLASTp">
+            </form>
 
-
-   </div>
+</div>
 
 </body>
 </html>

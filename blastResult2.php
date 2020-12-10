@@ -18,9 +18,9 @@
     #
     # Recuperation des donnees
     #==========================
-  if (!empty($_GET["seqnt"])){
-    $seq_nuc = $_GET["seqnt"];
-    $type == "nuc";
+  if (!empty($_GET["seqaa"])){
+      $seq_aa = $_GET["seqaa"];
+      $type == "aa";
   }
 ?>
 
