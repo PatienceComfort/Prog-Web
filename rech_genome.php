@@ -58,7 +58,7 @@
 	$query_sql = "";
 	$info_formulaire = ["id","query","souche","espece","genre"];
 	$col_table = ["idgenome","genomecomplet","souche","espece","genre"];
-	for ($i = 1; $i <= 5; $i++) {
+	for ($i = 1; $i <= 5; $i++) { //Pour chaque champ du formulaire
 		$ch = $info_formulaire[$i];
 		$col = $col_table[$i];
 		if (!empty($_POST[$ch])){ //Si la champ est rempli
@@ -108,7 +108,7 @@
 		}
 	}
 	
-	if(pg_num_rows($res) != 0) {
+	if(pg_num_rows($res) != 0) { //Affichage de tous les resultats
 		echo " <td colspan='5'> ID Genre Espece Souche Taille </td>";
 		while ($row = pg_fetch_assoc($res) ){
 		echo "<br><tr>
