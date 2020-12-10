@@ -55,7 +55,24 @@
 	}
 
 	// on regarde quels informations sont rentrées par l'utilisateur
-	if (!empty($_POST["id"])) { 
+	$query_sql = "";
+	$info_formulaire = ["id","query","souche","espece"];
+	foreach($info_formulaire as $ch){ //Pour chaque champ du formulaire
+		if (!empty($_POST[$ch])){ //Si la champ est rempli
+			if (strlen($query_sql) > 5){//Si la requete n'est pas vide
+				$query_sql .= "INTERSECT SELECT * FROM genegate.genome WHERE idgenome='".$_POST[$ch]."'";
+			}else{ // Si la requete est vide
+				$query_sql .= "INTERSECT SELECT * FROM genegate.genome WHERE idgenome='".$_POST[$ch]."'";
+			}
+		}
+	}
+	if(strlen($query_sql) > 5){ //Si la requete n'est pas vide
+		$query_sql .= ";";
+		$res = pg_query($db,$query_sql);
+	}else{
+		$res = pg_query($db,"SELECT * FROM genegate.genome WHERE genre='".$_POST["genre"]."';");
+	}
+	/*if (!empty($_POST["id"])) { 
 		$res = pg_query($db,"SELECT * FROM genegate.genome WHERE idgenome='".$_POST["id"]."';");
 	} elseif (!empty($_POST["query"])) {
 		$res = pg_query($db,"SELECT * FROM genegate.genome WHERE genomecomplet='".$_POST["query"]."';");
@@ -65,7 +82,7 @@
 		$res = pg_query($db,"SELECT * FROM genegate.genome WHERE espece='".$_POST["espece"]."';");
 	} else {
 		$res = pg_query($db,"SELECT * FROM genegate.genome WHERE genre='".$_POST["genre"]."';");
-	}
+	}*/
 	
 	if (!$res) {
  		echo "Une erreur s'est produite.\n";
