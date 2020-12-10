@@ -32,13 +32,13 @@
 	}?>
 
   	<li><a href="<?php echo $menu ?>">Home</a></li>
-  	<li><a href="#"> Access Forum</a></li>
+  	<li><a href="ForumSujets.php"> Access Forum</a></li>
   	<li><a href="utilisateur.php"> Your Account </a></li>
   	<li><a href="Contact.php"> Contact </a></li>	
 	</div>
 
 	<div id="user">
-	<?php echo Bonjour, $_SESSION['username']?>
+	<?php echo "Bonjour, ".$_SESSION['username'];?>
 	</div>
 	<div class="sidenav"> <br>
 
