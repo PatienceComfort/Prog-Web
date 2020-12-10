@@ -19,8 +19,10 @@
     # Recuperation des donnees
     #==========================
   if (!empty($_GET["seqnt"])){
-    $seq_nuc = $_GET["seqnt"];
-    $type == "nuc";
+    $seqnt = $_GET["seqnt"];
+    $seqnt = $seqnt.'';
+    //echo "Votre query est ".$seqnt."<br>";
+    $type = "nuc";
   }
 ?>
 
@@ -49,19 +51,17 @@
 //FASTA sequence (nucleotide ou acide amine)
 //Exemples teste
 //$seq_aa = 'MFYREKRRAIGCILRKLCEWKSVRILEAECCADHIHMLVEIPPKMSVSGFMGYLKGKSSLMPYEQFGDLKFKYRNREFWCRGYYVDTVGKNTAKIQDYIKHQLEEDKMGEQLSIPYPGSPFTGRK';
-//$seq_nucleotide = 'GTGTTCTACAGAGAGAAGCGTAGAGCAATAGGCTGTATTTTGAGAAAGCTGTGTGAGTGGAAAAGTGTACGGATTCTGGAAGCTGAATGCTGTGCAGATCATATCCATATGCTTGTGGAGATCCCGCCCAAAATGAGCGTATCAGGCTTTATGGGATATCTGAAAGGGAAAAGCAGTCTGATGCCTTACGAGCAGTTTGGTGATTTGAAATTCAAATACAGGAACAGGGAGTTCTGGTGCAGAGGGTATTACGTCGATACGGTGGGTAAGAACACGGCGAAGATACAGGATTACATAAAGCACCAGCTTGAAGAGGATAAAATGGGAGAGCAGTTATCGATTCCCTATCCGGGCAGCCCGTTTACGGGCCGTAAGTAA';
+//$seqnt = 'GTGTTCTACAGAGAGAAGCGTAGAGCAATAGGCTGTATTTTGAGAAAGCTGTGTGAGTGGAAAAGTGTACGGATTCTGGAAGCTGAATGCTGTGCAGATCATATCCATATGCTTGTGGAGATCCCGCCCAAAATGAGCGTATCAGGCTTTATGGGATATCTGAAAGGGAAAAGCAGTCTGATGCCTTACGAGCAGTTTGGTGATTTGAAATTCAAATACAGGAACAGGGAGTTCTGGTGCAGAGGGTATTACGTCGATACGGTGGGTAAGAACACGGCGAAGATACAGGATTACATAAAGCACCAGCTTGAAGAGGATAAAATGGGAGAGCAGTTATCGATTCCCTATCCGGGCAGCCCGTTTACGGGCCGTAAGTAA';
 
 if($type=="aa"){
-    $seq_aa = $seq;
     $encoded_query = urldecode($seq_aa);
     $base = 'nr';
     $blast_programm = 'blastp';
 }else{
     if($type=="nuc"){
-        $seq_nucleotide = $seq;
-        $encoded_query = urlencode($seq_nucleotide);
-        $base = 'nt';
-        $blast_programm = 'blastn';
+      $encoded_query = urlencode($seqnt);
+      $base = 'nt';
+      $blast_programm = 'blastn';
     }
 }
 
@@ -70,7 +70,7 @@ if($type=="aa"){
 
 
 // Build the request
-$data = array('CMD' => 'Put', 'PROGRAM' => 'blastp', 'DATABASE' => $base, 'QUERY' => $encoded_query);
+$data = array('CMD' => 'Put', 'PROGRAM' => $blast_programm, 'DATABASE' => $base, 'QUERY' => $encoded_query);
 $options = array(
   'http' => array(
     'header'  => "Content-type: application/x-www-form-urlencoded\r\n",

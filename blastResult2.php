@@ -20,6 +20,7 @@
     #==========================
   if (!empty($_GET["seqaa"])){
       $seq_aa = $_GET["seqaa"];
+      $seq_aa = $seq_aa.'';
       $type == "aa";
   }
 ?>
@@ -52,13 +53,11 @@
 //$seq_nucleotide = 'GTGTTCTACAGAGAGAAGCGTAGAGCAATAGGCTGTATTTTGAGAAAGCTGTGTGAGTGGAAAAGTGTACGGATTCTGGAAGCTGAATGCTGTGCAGATCATATCCATATGCTTGTGGAGATCCCGCCCAAAATGAGCGTATCAGGCTTTATGGGATATCTGAAAGGGAAAAGCAGTCTGATGCCTTACGAGCAGTTTGGTGATTTGAAATTCAAATACAGGAACAGGGAGTTCTGGTGCAGAGGGTATTACGTCGATACGGTGGGTAAGAACACGGCGAAGATACAGGATTACATAAAGCACCAGCTTGAAGAGGATAAAATGGGAGAGCAGTTATCGATTCCCTATCCGGGCAGCCCGTTTACGGGCCGTAAGTAA';
 
 if($type=="aa"){
-    $seq_aa = $seq;
     $encoded_query = urldecode($seq_aa);
     $base = 'nr';
     $blast_programm = 'blastp';
 }else{
     if($type=="nuc"){
-        $seq_nucleotide = $seq;
         $encoded_query = urlencode($seq_nucleotide);
         $base = 'nt';
         $blast_programm = 'blastn';
@@ -70,7 +69,7 @@ if($type=="aa"){
 
 
 // Build the request
-$data = array('CMD' => 'Put', 'PROGRAM' => 'blastp', 'DATABASE' => $base, 'QUERY' => $encoded_query);
+$data = array('CMD' => 'Put', 'PROGRAM' => $blast_programm, 'DATABASE' => $base, 'QUERY' => $encoded_query);
 $options = array(
   'http' => array(
     'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
