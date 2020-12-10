@@ -25,14 +25,14 @@
 
         <?php
         include "connect_db.php";
-        $infos = pg_query($db,"SELECT username,email, statut,validation_compte FROM utilisateur WHERE validation_compte='false';");
+        $infos = pg_query($db,"SELECT username,email, statut,validation_compte FROM genegate.utilisateur WHERE validation_compte='f';");
         if(pg_num_rows($infos) > 0){//S'il y a des resultats
           while ($row = pg_fetch_assoc($infos) ){ //Affichage des utilisateurs non valides
-            echo "<tr><td>".$data['username']."</td>
-                      <td>".$data['email']."</td>
-                      <td>".$data['statut']."</td>
-                      <td> <a href='validation_user.php?id=".$data['username']."'> Valider </a> </td> 
-                      <td> <a href='suppression_user.php?id=".$data['username']."'> Supprimer </a> </td> 
+            echo "<tr><td>".$row['username']."</td>
+                      <td>".$row['email']."</td>
+                      <td>".$row['statut']."</td>
+                      <td> <a href='validation_user.php?id=".$row['username']."'> Valider </a> </td> 
+                      <td> <a href='suppression_user.php?id=".$row['username']."'> Supprimer </a> </td> 
                   </tr>";
           }
         }
