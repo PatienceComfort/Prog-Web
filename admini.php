@@ -1,48 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<?php session_start(); ?>
+<html lang="fr">
+
   <head>
-    <meta charset="utf-8">
-    <title>Espace administrateur</title>
+
+    <meta charset="utf-8" />
+          <title>Website Style</title>  
+    <link rel="stylesheet" type="text/css" href="style1.css">
+    <div id="header"> <br>
+      <h> GeneGATE </h> <br><br>					
+    </div>
+
   </head>
   <body>
     <h2>Utilisateurs à valider</h2>
-    <table border = "2">
-      <tr>
-        <td>Username</td>
-        <td>email</td>
-        <td>Role demandé</td>
-        <td>Valider</td>
-        <td>Supprimer</td>
-      </tr>
-      <?php
-      include "connect_db.php";
-      if(isset($_GET['confirme'])){
-        $confirme = $_GET['confirme'];
-        $req = $bdd->pg_prepare('UPDATE utilisateur SET validation_compte = true WHERE username = ?');
-        $req->pg_execute(array($confirme));
-      }
-      if(isset($_GET['supprime'])){
-        $supprime = $_GET['supprime'];
-        $req = $bdd->pg_prepare('DELETE FROM  utilisateur WHERE username = ?');
-        $req->pg_execute(array($supprime));
-      }
-      $infos = pg_query($bdd,"SELECT username,email, statut,validation_compte FROM utilisateur");
-      while($data = pg_fetch_array($infos))
-      {?>
+      <table>
         <tr>
-          <td><?php echo $data['username'];?></td>
-          <td><?php echo $data['email'];?></td>
-          <td><?php echo$data['statut'];?></td>
-          <td><?php if($data['validation_compte']==false){?>
-            <a href="admini.php?confirme=<?= $data['username']?>">Confirmer</a>
-        <?php  } ?></td>
-        <td><?php if($data['validation_compte']==true){?>
-          <a href="admini.php?supprime=<?= $data['username']?>">Supprimer</a>
-      <?php  } ?></td>
+          <td>Username</td>
+          <td>email</td>
+          <td>Role demandé</td>
+          <td>Valider</td>
+          <td>Supprimer</td>
         </tr>
-      <?php
-      }
-      ?>
-    </table><br>
+
+        <?php
+        include "connect_db.php";
+        $infos = pg_query($db,"SELECT username,email, statut,validation_compte FROM utilisateur WHERE validation_compte='false';");
+        if(pg_num_rows($infos) > 0){//S'il y a des resultats
+          while ($row = pg_fetch_assoc($infos) ){ //Affichage des utilisateurs non valides
+            echo "<tr><td>".$data['username']."</td>
+                      <td>".$data['email']."</td>
+                      <td>".$data['statut']."</td>
+                      <td> <a href='validation_user.php?id=".$data['username']."'> Valider </a> </td> 
+                      <td> <a href='suppression_user.php?id=".$data['username']."'> Supprimer </a> </td> 
+                  </tr>";
+          }
+        }
+        ?>
+
+      </table><br>
+
   </body>
-</html>
+    
