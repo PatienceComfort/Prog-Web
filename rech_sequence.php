@@ -57,67 +57,83 @@
 
 	// on regarde quels informations sont rentrées par l'utilisateur
 	$query_sql = "";
-	$info_formulaire = ["id_seq","id_genome","souche","espece","genre","query_nuc","query_prot","taille","debut","fin","nomgene","biotypegene","biotypetranscrit","fonction"];
-	$col_table = ["idseq","idgenome","souche","espece","genre","seqnt","seqprot","taille_transcrit","pos_debut","pos_fin","biotypeTranscrit","biotypeGene","fonction"];
-	for ($i = 0; $i <= 13; $i++) { //Pour chaque champ du formulaire
+	$info_formulaire = ["id","query","souche","espece","genre"];
+	$col_table = ["idgenome","genomecomplet","souche","espece","genre"];
+	for ($i = 0; $i <= 4; $i++) { //Pour chaque champ du formulaire
 		$ch = $info_formulaire[$i];
 		$col = $col_table[$i];
-		if ($col=="idgenome"){ //idgenome est ambigu
-			$col = "transcrit.".$col;
-		} 
 		if (!empty($_POST[$ch])){ //Si la champ est rempli
 			if (strlen($query_sql) > 5){//Si la requete n'est pas vide
-				if(($ch != "query_nuc")&&($ch != "query_prot")){
-					$query_sql .= "INTERSECT SELECT * FROM genegate.genome,genegate.transcrit WHERE genome.idgenome = transcrit.idgenome AND ".$col."='".$_POST[$ch]."'";
+				if($ch != "query"){
+					$query_sql .= "INTERSECT SELECT * FROM genegate.genome WHERE ".$col."='".$_POST[$ch]."'";
 				}else{
-					$query_sql .= "INTERSECT SELECT * FROM genegate.genome,genegate.transcrit WHERE genome.idgenome = transcrit.idgenome AND ".$col." LIKE '%".$_POST[$ch]."%' ";
+					$query_sql .= "INTERSECT SELECT * FROM genegate.genome WHERE ".$col." LIKE '%".$_POST[$ch]."%' ";
 				}
 				
 			}else{ // Si la requete est vide
-				if(($ch != "query_nuc")&&($ch != "query_prot")){
-					$query_sql .= "SELECT * FROM genegate.genome,genegate.transcrit WHERE genome.idgenome = transcrit.idgenome AND ".$col."='".$_POST[$ch]."'";
+				if($ch != "query"){
+					$query_sql .= "SELECT * FROM genegate.genome WHERE ".$col."='".$_POST[$ch]."'";
 				}else{
-					$query_sql .= "SELECT * FROM genegate.genome,genegate.transcrit WHERE genome.idgenome = transcrit.idgenome AND ".$col." LIKE '%".$_POST[$ch]."%' ";
+					$query_sql .= "SELECT * FROM genegate.genome WHERE ".$col." LIKE '%".$_POST[$ch]."%' ";
 					
 				}
 				
 			}
 		}
 	}
-
-if(strlen($query_sql) > 5){ //Si la requete n'est pas vide
+	if(strlen($query_sql) > 5){ //Si la requete n'est pas vide
 		$query_sql .= ";";
-		echo "<br>";
-		//echo $query_sql;
 		$res = pg_query($db,$query_sql);
 	}
+	/*if (!empty($_POST["id"])) { 
+		$res = pg_query($db,"SELECT * FROM genegate.genome WHERE idgenome='".$_POST["id"]."';");
+	} elseif (!empty($_POST["query"])) {
+		$res = pg_query($db,"SELECT * FROM genegate.genome WHERE genomecomplet='".$_POST["query"]."';");
+	} elseif (!empty($_POST["souche"])) {
+		$res = pg_query($db,"SELECT * FROM genegate.genome WHERE souche='".$_POST["souche"]."';");
+	} elseif (!empty($_POST["espece"])) {
+		$res = pg_query($db,"SELECT * FROM genegate.genome WHERE espece='".$_POST["espece"]."';");
+	} else {
+		$res = pg_query($db,"SELECT * FROM genegate.genome WHERE genre='".$_POST["genre"]."';");
+	}*/
 	
 	if (!$res) {
  		echo "Une erreur s'est produite.\n";
-		echo pg_last_error($conn);
   	exit;
 	}
 
-	if(pg_num_rows($res) == 0) { // si 0 resultats
+	if(pg_num_rows($res) == 0) { // si 0 resultats alors on affiche toute la base
+		$res2 = pg_query($db,"SELECT * FROM genegate.genome ;");
 		echo " <br><div style='font-size:150%'> Aucun résultat </div> <br> <br>";
-	}
-	
-	if(pg_num_rows($res) != 0) { //Affichage de tous les resultats
-		echo " <td colspan='5'> IDtranscrit Genre Espece Souche Taille </td>";
-		while ($row = pg_fetch_assoc($res) ){
-		echo "<br><tr>
-            	<td> <a href='fiche2.php?id=".$row['idseq']."'> ".$row['idseq']."</a> </td>  
+		echo " <td colspan='5'> ID Genre Espece Souche Taille </td>";
+		while ($row = pg_fetch_assoc($res2) ){
+		echo "<div style='font-size:110%'> 
+		<br><tr>
+            	<td> <a href='fiche.php?id=".$row['idgenome']."'> ".$row['idgenome']."</a> </td> 
 	    	<td>".$row['genre']."</td>
 	    	<td>".$row['espece']."</td>
 	    	<td>".$row['souche']."</td>
-		<td>".$row['taille_transcrit']."</td>
+       		</tr> </div>";
+		
+		}
+	}
+	
+	if(pg_num_rows($res) != 0) { //Affichage de tous les resultats
+		echo " <td colspan='5'> ID Genre Espece Souche Taille </td>";
+		while ($row = pg_fetch_assoc($res) ){
+		echo "<br><tr>
+            	<td> <a href='fiche.php?id=".$row['idgenome']."'> ".$row['idgenome']."</a> </td>  
+	    	<td>".$row['genre']."</td>
+	    	<td>".$row['espece']."</td>
+	    	<td>".$row['souche']."</td>
+		<td>".$row['taille']."</td>
        		</tr>";
 		
-		} // l'identifiant renvoie vers le lien de la fiche ==> ?id= dans l'url : sert à retrouver l'id et sert à partir d'une page fiche2.php afficher toutes les résultats/transcrit que l'utilisateur veut voir.
+		} // l'identifiant renvoie vers le lien de la fiche ==> ?id= dans l'url : sert à retrouver l'id et sert à partir d'une page fiche.php afficher toutes les résultats/génome que l'utilisateur veut voir.
 
 	}
 
-	pg_close($db);
+pg_close($db);
 ?>
 </table>
 </div>
