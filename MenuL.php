@@ -34,7 +34,7 @@
 
   	<li><a href="<?php echo $menu ?>">Home</a></li>
 
-  	<li><a href="#"> Access Forum</a></li>
+  	<li><a href="ForumSujets.php"> Access Forum</a></li>
   	<li><a href="utilisateur.php"> Your Account </a></li>
   	<li><a href="Contact.php"> Contact </a></li>	
 	</div>
@@ -116,7 +116,7 @@
 	</div>
 
 	<div id ="accederForum">	
-	<button id="close-image" name="img" onclick = "location.href = 'PageRecherche.html'"> <img src="https://www.mindnews.fr/files/images/Images%20de%20production/Photos%20th%C3%A9matiques/_cropthumbs/commentaires%20chat%20forums%20OK-350x220.jpg?v=YgMnXZ26jNq2qNCuqq19FpgkbW5eNthZ2KCSUgjKrLQ" height="110" width="160"><br> Acceder au Forum </button> <br>
+	<button id="close-image" name="img" onclick = "location.href = 'ForumSujets.php'"> <img src="https://www.mindnews.fr/files/images/Images%20de%20production/Photos%20th%C3%A9matiques/_cropthumbs/commentaires%20chat%20forums%20OK-350x220.jpg?v=YgMnXZ26jNq2qNCuqq19FpgkbW5eNthZ2KCSUgjKrLQ" height="110" width="160"><br> Acceder au Forum </button> <br>
 	</div>
 
 	<div class ="bottombar">
