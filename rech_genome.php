@@ -49,7 +49,8 @@
 	<h2> Résultats :</h2>
 <?php
 	
-	$db = pg_connect( "host=localhost port=5432 dbname=genegate user=abirami password=16011996"  );
+	//$db = pg_connect( "host=localhost port=5432 dbname=genegate user=abirami password=16011996"  );
+	$db = pg_connect("host=localhost dbname=romane user=romane");
 	if(!$db) {      
 		echo "Error : Unable to open database\n";
 	}
@@ -58,14 +59,25 @@
 	$query_sql = "";
 	$info_formulaire = ["id","query","souche","espece","genre"];
 	$col_table = ["idgenome","genomecomplet","souche","espece","genre"];
-	for ($i = 1; $i <= 5; $i++) { //Pour chaque champ du formulaire
+	for ($i = 0; $i <= 4; $i++) { //Pour chaque champ du formulaire
 		$ch = $info_formulaire[$i];
 		$col = $col_table[$i];
 		if (!empty($_POST[$ch])){ //Si la champ est rempli
 			if (strlen($query_sql) > 5){//Si la requete n'est pas vide
-				$query_sql .= "INTERSECT SELECT * FROM genegate.genome WHERE ".$col."='".$_POST[$ch]."'";
+				if($ch != "query"){
+					$query_sql .= "INTERSECT SELECT * FROM genegate.genome WHERE ".$col."='".$_POST[$ch]."'";
+				}else{
+					$query_sql .= "INTERSECT SELECT * FROM genegate.genome WHERE ".$col." LIKE '%".$_POST[$ch]."%' ";
+				}
+				
 			}else{ // Si la requete est vide
-				$query_sql .= "SELECT * FROM genegate.genome WHERE ".$col."='".$_POST[$ch]."'";
+				if($ch != "query"){
+					$query_sql .= "SELECT * FROM genegate.genome WHERE ".$col."='".$_POST[$ch]."'";
+				}else{
+					$query_sql .= "SELECT * FROM genegate.genome WHERE ".$col." LIKE '%".$_POST[$ch]."%' ";
+					
+				}
+				
 			}
 		}
 	}
@@ -94,7 +106,7 @@
 
 	if(pg_num_rows($res) == 0) { // si 0 resultats alors on affiche toute la base
 		$res2 = pg_query($db,"SELECT * FROM genegate.genome ;");
-		echo " <br><div style='font-size:150%'> Aucun résultats </div> <br> <br>";
+		echo " <br><div style='font-size:150%'> Aucun résultat </div> <br> <br>";
 		echo " <td colspan='5'> ID Genre Espece Souche Taille </td>";
 		while ($row = pg_fetch_assoc($res2) ){
 		echo "<div style='font-size:110%'> 
