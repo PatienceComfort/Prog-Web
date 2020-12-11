@@ -8,9 +8,9 @@ include 'connect_db.php';?>
 	$keywords = preg_split("/=/", $str);
 	$id = $keywords[1]; 
 
-	$update = pg_query($db,"UPDATE genegate.annotation SET statut='Pas d annotateur',idValid1 = NULL, idValid2= NULL, idAnnot=NULL WHERE idSeq='".$id."'");
-	$update2 = pg_query($db,"UPDATE genegate.transcrit SET annotee=False, biotypeTranscrit='', biotypeGene='',fonction='',nomGene='' WHERE idSeq='".$id."'");
-
+	$update = pg_query($db,"UPDATE genegate.annotation SET statut='Pas d annotateur' WHERE idSeq='".$id."';");
+	$update2 = pg_query($db,"UPDATE genegate.transcrit SET annotee='no' WHERE idSeq='".$id."';");
+	echo pg_last_error();
 	
 	$res= pg_query($db,"SELECT * FROM genegate.annotation WHERE idSeq='".$id."'");
 	
