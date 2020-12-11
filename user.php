@@ -17,7 +17,7 @@ include 'connect_db.php';
 	}
 	$timestamp = time();
 	$datetime = date("d-m-Y H:i:s",$timestamp);
-	$update_time = pg_query($db,"UPDATE genegate.utilisateur SET dateconnexion = '".$datetime."' WHERE email='".$_POST["email"]."';");
+	$update_time = pg_query($db,"UPDATE genegate.utilisateur SET dateconnexion='".$datetime."' WHERE email='".$_POST["email"]."';");
 	// rechercher le role de l'utilisateur
 	if(pg_num_rows($res)!=0){ 
 		if ( $_SESSION['statut'] == 'Annotateur') {
