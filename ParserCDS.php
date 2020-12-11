@@ -12,7 +12,7 @@ $fasta_files = ['Escherichia_coli_cft073_cds.fa', 'Escherichia_coli_o157_h7_str_
 
 foreach($fasta_files as $fasta_file){
    echo "<br>";
-   echo $fasta_file;
+   echo $fasta_file; //On affiche le nom
    echo "<br>";
    //Ouverture du fichier
    $lines = file($fasta_file) or die("Unable to open file!");
