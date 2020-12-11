@@ -46,7 +46,7 @@ CREATE TABLE transcrit(
 	taille_transcrit int NOT NULL,
 	biotypeGene VARCHAR(100),
 	biotypeTranscrit VARCHAR(100),
-	annotee BOOLEAN, -- False : non annotee, True : annotee
+	annotee VARCHAR(20), -- False : non annotee, True : annotee
 	idGenome VARCHAR(20) NOT NULL,
 	PRIMARY KEY (idSeq) --, 
 	--CONSTRAINT fkseq FOREIGN KEY  (idGenome) REFERENCES genome (idGenome)
