@@ -19,7 +19,7 @@ inscriptionUti.php : contient le formulaire d'inscription de nouveaux utilisateu
   
   plan.php : affiche les fonctionalités du sites
   
-  Aboutus.php : affiche une page de presentation sur les créatrices du sites
+  Aboutus.html : affiche une page de presentation sur les créatrices du sites
   
   Rechercher les séquences et génomes :
   
