@@ -2,8 +2,7 @@
 
 <?php
    # connexion à la base : affiche "connection failed" si pas de connection
-   # remplir user= password= sans espace
-   $db = pg_connect( "host=localhost dbname=genegate port=5432  user=_____  password=_____ "  ) or die('connection failed');
+   include 'connect_db.php';
 ?>
 
 <?php
@@ -19,6 +18,7 @@ foreach($fasta_files as $fasta_file){
       if ($bool_chevron !== false) { //Si le chevron a ete trouve
          //ajouter dans sql le cds precedent
          if ((strlen($seq) > 0) &&(strlen($id_cds))) {
+            $seq = preg_replace('/\s+/', '', $seq);
             $query_sql = pg_query($db,"UPDATE genome.transcrit SET seqProt = '$seq' WHERE idSeq = '$id_cds';"); 
             echo "Update SQL \n";
          }

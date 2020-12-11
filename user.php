@@ -1,36 +1,33 @@
 <!DOCTYPE html>
-
+<?php session_start(); 
+include 'connect_db.php';
+?>
+<html lang="fr">
 <?php
-session_start(); 
-
-   $db = pg_connect( "host=localhost port=5432 dbname=genegate user=abirami password=16011996"  );
-   if(!$db) {
-      echo "Error : Unable to open database\n";
-   } else {
-      echo "Opened database successfully\n";
-   }
-    
-
-	$query =  "SELECT * FROM genegate.utilisateur WHERE email ='".$_POST["email"]."' AND mdp = '".$_POST["pwd"]."'";
+	// connexion de l'utilisateur à la base 
+	$query =  "SELECT * FROM genegate.utilisateur WHERE email='".$_POST["email"]."' AND mdp='".$_POST["pwd"]."'";
 	
 	$res = pg_query($db,$query);
 	while ($row = pg_fetch_assoc($res)) {
 	  echo $row['email'];
-	$_SESSION['username']=$row['prenom'];
+	$_SESSION['username']=$row['username'];
 	$_SESSION['mail']=$row['email'];
 	$_SESSION['statut']=$row['statut']; 
+	$_SESSION['pseudo']=$row['username'];
 	}
-
+	$timestamp = time();
+	$datetime = date("d-m-Y H:i:s",$timestamp);
+	$update_time = pg_query($db,"UPDATE genegate.utilisateur SET dateconnexion = '".$datetime."' WHERE email='".$_POST["email"]."';");
+	// rechercher le role de l'utilisateur
 	if(pg_num_rows($res)!=0){ 
 		if ( $_SESSION['statut'] == 'Annotateur') {
           	 header('Location: MenuA.php'); 
-	} else if ( $_SESSION['statut'] == 'Validateur') {      	 header('Location: MenuV.php'); 
-	} else {
-	header('Location: MenuL.php'); 
-}
+	} else if ( $_SESSION['statut'] == 'Validateur') {    header('Location: MenuV.php'); 
+		} else {
+		header('Location: MenuL.php');
+	}
 	}else{
 		header('Location: login.php?erreur=1');		
-		echo "Invalid Details";
     }
 
 pg_close($db);

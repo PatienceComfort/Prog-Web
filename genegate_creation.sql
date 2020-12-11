@@ -27,7 +27,7 @@ CREATE TABLE genome(
 	idGenome VARCHAR(20),
 	genre VARCHAR(20) NOT NULL,
 	espece VARCHAR(20) NOT NULL,
-	souche VARCHAR(20),
+	souche VARCHAR(50),
 	genomeComplet TEXT NOT NULL,
 	taille int NOT NULL,
 	PRIMARY KEY (idGenome)
@@ -97,7 +97,7 @@ CREATE TABLE annotation (
 	idValid1  VARCHAR(20),
 	idValid2  VARCHAR(20),
 	commentaire TEXT,
-	statut VARCHAR(20) CHECK (statut = 'Pas de validateur' OR statut = 'Pas d annotateur' OR statut = 'A annoter' OR statut = 'A valider' OR statut = 'Validation' OR statut = 'Rejet'),
+	statut VARCHAR(20) CHECK (statut = 'Pas de validateur' OR statut = 'Pas d annotateur' OR statut = 'A annoter' OR statut = 'A valider' OR statut = 'Validation'),
 	PRIMARY KEY (numAnnot), 
 	CONSTRAINT fkannot1 FOREIGN KEY  (idSeq) REFERENCES transcrit (idSeq),
 	CONSTRAINT fkannot2 FOREIGN KEY  (idAnnot) REFERENCES utilisateur (username),

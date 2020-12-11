@@ -8,18 +8,7 @@
 		<h> GENEGATE </h> <br><br>	
 	</div>
   </head>
-
-
-
    	<body>
-
-	<div id="searchbar">
-	<form id="form"> 
-  		<input type="search" id="query" placeholder = "Search..">
-  		<button text-align = "center"> Rechercher </button>
-  	</form>
-	</div>
-
 
 	<div id ="menu"> 
   		<?php if ( $_SESSION['statut'] == 'Annotateur') {
@@ -33,27 +22,19 @@
   	<li><a href="<?php echo $menu ?>">Home</a></li>
   	<li><a href="ForumSujets.php"> Access Forum</a></li>
   	<li><a href="utilisateur.php"> Your Account </a></li>
-  	<li><a href="Contact.php"> Contact </a></li>
-	<div id ="menu2"> 
-	<button type="button" onclick = "location.href = 'connexion.php'"name="button"> Se connecter </button>
-	<button type="button" onclick = "location.href = 'inscriptionUti.php'"name="button"> S'inscrire </button>
-	</div> 	
+  	<li><a href="Contact.php"> Contact </a></li> 	
 	</div>
 
 
 	<div class="sidenav"> <br>
 
-		
-	<button id="close-image" name="img" onclick = "location.href = 'Recherche_seq.php'"> <img src="https://www.biospectrumasia.com/uploads/articles/oncotest-debiopharm-identify-biomarker-candidates.jpg" height="70" width="115"><br> Rechercher séquence </button> <br>
+	<button id="close-image" name="img" onclick = "location.href = 'Recherche_seq.php'"> <img src="https://www.flaticon.com/svg/static/icons/svg/1198/1198618.svg" height="70" width="115"><br> Rechercher séquence </button> <br>
 
-	<button id="close-image" name="img" onclick = "location.href = 'Recherche_gen.php'"> <img src="https://www.biospectrumasia.com/uploads/articles/oncotest-debiopharm-identify-biomarker-candidates.jpg" height="70" width="115"><br> Rechercher génome </button> <br>
-	
-	<button id="close-image" name="img" onclick = "location.href = 'PageRecherche.html'"> <img src="http://ugene.unipro.ru/wp-content/uploads/2015/03/55.png" height="70" width="115""><br> Alignement </button> <br>
-		<button id="close-image" name="img" onclick = "location.href = 'Sequence.php'"> <img src="https://i2.wp.com/bioinfo-fr.net/wp-content/uploads/2012/05/INSL5.png?ssl=1" height="70" width="115"><br> Base Nucléotidique </button> <br>
+	<button id="close-image" name="img" onclick = "location.href = 'Recherche_gen.php'"> <img src="https://www.flaticon.com/svg/static/icons/svg/1198/1198618.svg" height="70" width="115"><br> Rechercher génome </button> <br>
 
-	<button id="close-image" name="img" onclick = "location.href = 'Sequence.php'"> <img src="https://cdn.rcsb.org/rcsb-pdb/general_information/releases/1504_images/VisualizationStructure10000.png" height="70" width="115"><br> Base Proteique </button> <br>
-	<button id="close-image" name="img" onclick = "location.href = 'Genome.php'"> <img src="https://genome.cshlp.org/content/19/10/1801/F1.large.jpg" height="70" width="115"><br> Base Génome </button> <br>
+	<button id="close-image" name="img" onclick = "location.href = 'Sequence.php'"> <img src="https://cdn.rcsb.org/rcsb-pdb/general_information/releases/1504_images/VisualizationStructure10000.png" height="70" width="115"><br> Base Transcrit </button> <br>
 
+	<button id="close-image" name="img" onclick = "location.href = 'Genome.php'"> <img src="https://genome.cshlp.org/content/19/10/1801/F1.large.jpg" height="70" width="115"><br> Base Génome </button> <br>	
   
 	</div>
 

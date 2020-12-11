@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<?php session_start();?>
-<html lang="fr">
+<?php session_start(); 
+include 'connect_db.php';
+?>
+<html>
 
   <head>
 
   <meta charset="utf-8" />
-        <title>Website Style</title>  
+        <title> Genegate</title>  
 	 <link rel="stylesheet" type="text/css" href="style1.css">
 	<div id="header"> <br>
 		<h> GeneGATE </h> <br><br>					
 	</div>
 
   </head>
-
-  <body>
-	<div id ="menu"> 
-  		<?php if ( $_SESSION['statut'] == 'Annotateur') {
+ <body>
+<div id ="menu"> 
+  	<?php if ( $_SESSION['statut'] == 'Annotateur') {
           	 $menu='MenuA.php'; 
 	} else if ( $_SESSION['statut'] == 'Validateur') {      	 
 		$menu='MenuV.php'; 
@@ -26,35 +27,23 @@
   	<li><a href="<?php echo $menu ?>">Home</a></li>
   	<li><a href="ForumSujets.php"> Access Forum</a></li>
   	<li><a href="utilisateur.php"> Your Account </a></li>
-  	<li><a href="Contact.php"> Contact </a></li>		
+  	<li><a href="Contact.php"> Contact </a></li>	
 	</div>
-	
+
 	<div class="sidenav"> <br>
 
-		
-	<button id="close-image" name="img" onclick = "location.href = 'Recherche_seq.php'"> <img src="https://www.biospectrumasia.com/uploads/articles/oncotest-debiopharm-identify-biomarker-candidates.jpg" height="70" width="115"><br> Rechercher séquence </button> <br>
+	<button id="close-image" name="img" onclick = "location.href = 'Recherche_seq.php'"> <img src="https://www.flaticon.com/svg/static/icons/svg/1198/1198618.svg" height="70" width="115"><br> Rechercher séquence </button> <br>
 
-	<button id="close-image" name="img" onclick = "location.href = 'Recherche_gen.php'"> <img src="https://www.biospectrumasia.com/uploads/articles/oncotest-debiopharm-identify-biomarker-candidates.jpg" height="70" width="115"><br> Rechercher génome </button> <br>
-	
-	<button id="close-image" name="img" onclick = "location.href = 'PageRecherche.html'"> <img src="http://ugene.unipro.ru/wp-content/uploads/2015/03/55.png" height="70" width="115""><br> Alignement </button> <br>
-		<button id="close-image" name="img" onclick = "location.href = 'Sequence.php'"> <img src="https://i2.wp.com/bioinfo-fr.net/wp-content/uploads/2012/05/INSL5.png?ssl=1" height="70" width="115"><br> Base Nucléotidique </button> <br>
+	<button id="close-image" name="img" onclick = "location.href = 'Recherche_gen.php'"> <img src="https://www.flaticon.com/svg/static/icons/svg/1198/1198618.svg" height="70" width="115"><br> Rechercher génome </button> <br>
 
-	<button id="close-image" name="img" onclick = "location.href = 'Sequence.php'"> <img src="https://cdn.rcsb.org/rcsb-pdb/general_information/releases/1504_images/VisualizationStructure10000.png" height="70" width="115"><br> Base Proteique </button> <br>
-	<button id="close-image" name="img" onclick = "location.href = 'Genome.php'"> <img src="https://genome.cshlp.org/content/19/10/1801/F1.large.jpg" height="70" width="115"><br> Base Génome </button> <br>
-  
-	</div>
+	<button id="close-image" name="img" onclick = "location.href = 'Sequence.php'"> <img src="https://cdn.rcsb.org/rcsb-pdb/general_information/releases/1504_images/VisualizationStructure10000.png" height="70" width="115"><br> Base Transcrit </button> <br>
+
+	<button id="close-image" name="img" onclick = "location.href = 'Genome.php'"> <img src="https://genome.cshlp.org/content/19/10/1801/F1.large.jpg" height="70" width="115"><br> Base Génome </button> <br> </div>
 
 <table style='width:40%';>
 	<div id="pageresults">
 	<h2> Résultats :</h2>
 <?php
-	
-	//$db = pg_connect( "host=localhost port=5432 dbname=genegate user=abirami password=16011996"  );
-	$db = pg_connect("host=localhost dbname=romane user=romane");
-	if(!$db) {      
-		echo "Error : Unable to open database\n";
-	}
-
 	// on regarde quels informations sont rentrées par l'utilisateur
 	$query_sql = "";
 	$info_formulaire = ["id_seq","id_genome","souche","espece","genre","query_nuc","query_prot","taille","debut","fin","nomgene","biotypegene","biotypetranscrit","fonction"];
@@ -68,9 +57,9 @@
 		if (!empty($_POST[$ch])){ //Si la champ est rempli
 			if (strlen($query_sql) > 5){//Si la requete n'est pas vide
 				if(($ch != "query_nuc")&&($ch != "query_prot")){
-					$query_sql .= "INTERSECT SELECT * FROM genegate.genome,genegate.transcrit WHERE genome.idgenome = transcrit.idgenome AND ".$col."='".$_POST[$ch]."'";
+					$query_sql .= "AND ".$col."='".$_POST[$ch]."'";
 				}else{
-					$query_sql .= "INTERSECT SELECT * FROM genegate.genome,genegate.transcrit WHERE genome.idgenome = transcrit.idgenome AND ".$col." LIKE '%".$_POST[$ch]."%' ";
+					$query_sql .= "AND ".$col." LIKE '%".$_POST[$ch]."%' ";
 				}
 				
 			}else{ // Si la requete est vide
@@ -86,7 +75,7 @@
 	}
 
 if(strlen($query_sql) > 5){ //Si la requete n'est pas vide
-		$query_sql .= ";";
+		$query_sql .= "ORDER BY pos_debut;";
 		echo "<br>";
 		//echo $query_sql;
 		$res = pg_query($db,$query_sql);

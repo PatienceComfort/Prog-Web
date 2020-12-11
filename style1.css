@@ -4,9 +4,8 @@
  font-size : 30px;
  font-weight: bold;
  text-align : center;
- background-image: url('https://previews.123rf.com/images/techdesign07/techdesign071901/techdesign07190100028/126082066-abstract-medical-background-dna-research-molecule-genetics-genome-dna-chain-genetic-analysis-art-con.jpg');
+ background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ_Gczjh3rDOtIrx7VoIpwA7GbvmR4PzwJGA&usqp=CAU');
 }
-
 body{
     margin:0;
     padding:0;
@@ -33,24 +32,33 @@ body{
   left: 14%;
   background-color:#69B991;
   border: 1px solid black;
-  padding: 5px 5px 5px 5px; 
+  padding: 3px 3px 3px 3px;
 }
 
 #searchGenome
 {
   position: absolute;
   border-radius: 5px;
-  top: 95% ;
-  left: 14%;
+  top: 80% ;
+  right: 1%;
   background-color:#69B991;
   border: 1px solid black;
-  padding: 5px 5px 5px 5px; 
+  padding: 3px 3px 3px 3px; 
 }
 
+#searchGenomeV {
+  position: absolute;
+  border-radius: 5px;
+  top: 100% ;
+  right: 1%;
+  background-color:#69B991;
+  border: 1px solid black;
+  padding: 3px 3px 3px 3px; 
+}
 .bottombar {
     background-color: black;
     position: absolute;
-    top: 176%;
+    top: 210%;
     width: 1285px;
     height: 30px;
     display: flex;
@@ -61,7 +69,7 @@ body{
 
 #footer {
 position: absolute; 
-top: 185%; 
+top: 220%; 
 left: 50%;
 }
 
@@ -87,32 +95,47 @@ left: 50%;
 
 
 
-#startAnnot {
+#accederForum {
 position: absolute; 
-top: 45%; 
-right: 1%;
-}
-
-#startValid {
-position: absolute; 
-top: 68%; 
-right: 31%;
+top: 50%; 
+right: 16%;
 }
 
 #accederCompte {
 position: absolute; 
-top: 45%; 
+top: 50%; 
 right: 31%;
 }
-#searchbar {
+
+#startAnnot {
 position: absolute; 
-top: 35%; 
-right: 2%;	
+top: 50%; 
+right: 1%;
 }
-#accederForum {
+
+
+#startValid1 {
+position: absolute; 
+top: 75%; 
+right: 31%;
+}
+
+#startValid2 {
+position: absolute; 
+top: 75%; 
+right: 16%;
+}
+
+#accederCompteL {
 position: absolute; 
 top: 45%; 
-right: 16%;
+right: 25%;
+}
+
+#accederForumL {
+position: absolute; 
+top: 45%; 
+right: 7%;
 }
 
 table {
@@ -154,21 +177,20 @@ table {
   left: 20%;
 }
 
-
 #user {
 position: absolute; 
 top: 40%; 
 right: 5%;
 }
 
-#searchGen2 {
+#searchSeqGenome2 {
   position: absolute;
   border-radius: 5px;
   top: 35% ;
-  left: 14%;
-  background-color: #59AC80;
+  left: 30%;
+  background-color:#69B991;
   border: 1px solid black;
-  padding: 5px 5px 5px 5px; 
+  padding: 3px 3px 3px 3px;
 }
 
 table {
@@ -202,12 +224,34 @@ td:first-child {
 
 #uniprotPfamEnsembl {
 	position: absolute;
-	top: 40%;
+	top: 45%;
 	right:20%;
 }
 #sviewer_x7zvq {
-position: absolute;
-	height:50%;
-	width:50%;
+	position: absolute;
+	height:60%;
+	width:60%;
+}
+
+#Alignement {
+	position: absolute;
+	top: 115%;
+	right:5%;
+	border-radius: 5px;
+  	background-color:#69B991;
+	border: 1px solid black;
+	padding: 3px 3px 3px 3px; 
+}
+
+#attribution {
+	position: absolute;
+	top: 40%;
+	left: 20%;
+}
+
+#validation {
+	position: absolute;
+	top: 15%;
+	right: 25%;
 }
 
