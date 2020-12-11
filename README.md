@@ -1,26 +1,52 @@
 # Prog-Web
 
-### test.html/test.php : Page d'acceuil 
-Première page rencontrée en allant sur le site. Il s'agit du Sign in (log in) page.
-Cette page comprend:
-- un formulaire demandant l'email ou le nom d'utilisateur ainsi que le mot de passe. Ces deux champs sont obligatoires (si un champ manquant, renvoyer un message d'erreur)
-Les informations fournies ici vont être comparés à la base de données que nous avons . Si le couple (email/nom d'utilisateur - mot de passe) 
-n'existe pas dans notre base de données, on renvoit un message d'erreur.
+ParserGenome, ParserCDS, ParserPep : permettent de parser les fichiers fasta et de remplir les bases transcrit, genome et annotations
 
-A faire:
-- php: Script de recupération des données  
-- php: Script de liaison à la base de données 
-
-
-### test2.html/test2.php : Page d'acceuil 
-Page de Sign in, pour les personnes qui n'ont pas de compte. Cette page contient:
-- Un bouton Sign in menant vers la page de Sign in
-- Un formulaire dont tous les champs sont obligatoires (si un champ manquant, renvoyer un message d'erreur: Javacript?)
-
-A faire:
-- php: script de recupération de données 
-- php: script de liaison à la base de donnees
-
-
-Pour les pages sign up et sign in, image de fond utilisé: https://fr.freepik.com/vecteurs-premium/fond-blanc-adn-vert_2371264.htm
-
+login.php : permet de se connecter au site
+  - user.php : verifie que l'utilisateur est bien inscrit dans la base
+inscriptionUti.php : contient le formulaire d'inscription de nouveaux utilisateurs
+  - confirmInscript.php : permet de rentrer le nouvel utilisateur dans la base 
+  
+  MenuL.php : Menu Lecteur
+  
+  MenuA.php: Menu Annotateur
+  
+  MenuV.php: Menu Validateur
+  
+  utilisateur.php : affiche les information sur l'utilisateur/son compte
+  
+  policy.php : affiche les conditions d'utilisation du site
+  
+  plan.php : affiche les fonctionalités du sites
+  
+  Aboutus.html : affiche une page de presentation sur les créatrices du sites
+  
+  Rechercher les séquences et génomes :
+  
+   Recherche_seq.php Recherche_gen.php : contiennnt les formulaire de recherche des séquences et génome
+   rech_sequence.php et rech_genome.php : permet de chercher dans la base et d'aaficher les resultats des requetes
+    
+   Genome.php Sequence.php : affichent tout le contenu/fiches disponibles dans les bases
+  
+   fiche.php : correspond à une fiche génome
+   fihe2.php : correspond à une fiche de séquence
+  
+  Attribuer les séquences par un validateur:
+    attribuer.php : affiche l'ensemble des séquences qui n'ont pas d'annotateur,
+    attribuerseq : formulaire qui pertmet au validateur de rentrer les coordonnées d'un annotateur
+    attibution : attribution de la séquence (modifie la base annotation) et affiche un lessage de confirmation
+  
+  Annoter :
+    annotation.php : affiche l'ensemble des séquences à annoter pour un annotateur
+    annoter.php : contient le formulaire d'annotation 
+    confirmAnnotation.php : permet de rentrer les annotations dans la base transcrit et met à jour la base Annotation
+   
+   Valider ou rejetter les sequences
+      validation.php : affiche les séquences de la base annotation a valider
+      valider.php : afficher la sequence selectionnée et 2 boutons valider ou rejet 
+        confirmValid.php : valide les annotations; met à jour la base annotations et transcrit
+        rejetValid.php : rejette les annotations; met à jour la base annotations et transcrit
+        
+          
+  
+  
