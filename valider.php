@@ -44,8 +44,12 @@ include 'connect_db.php';?>
 <div id="attribution">
 <table style='width:30%'; >
 	<?php
+	$str=$_SERVER['REQUEST_URI']; 
+	
+	$keywords = preg_split("/=/", $str);
+	$id = $keywords[1]; 
 
-	$res = pg_query($db, "SELECT * FROM genegate.annotation WHERE statut = 'A valider';");
+	$res = pg_query($db, "SELECT * FROM genegate.annotation WHERE idSeq='".$id."' AND statut = 'A valider';");
 	
 	if (!$res) {
  		echo "Une erreur s'est produite.\n";
