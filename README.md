@@ -33,6 +33,8 @@ inscriptionUti.php : contient le formulaire d'inscription de nouveaux utilisateu
    fiche.php : correspond à une fiche génome
    fihe2.php : correspond à une fiche de séquence
 
+   blastResult.php,blastResult2.php : résultats des blastp et blastn
+
    
   
   Attribuer les séquences par un validateur:
