@@ -17,7 +17,8 @@
         <a href = "MenuA.php">Menu Annotateur</a>
         <a href = "MenuV.php">Menu Validateur</a>
       </ul>
-      <ul><a href = "Recherche_gen.php">Page d'acceuil et de recherche d'information</a></ul>
+      <ul><a href = "Recherche_gen.php">Page de recherche sur les génomes</a></ul>
+      <ul><a href = "Recherche_seq.php">Page de recherche sur les séquences</a></ul>
       <ul><a href = "ForumDiscussions.php">Forum</a></ul>
       <!--<ul><p>Espace Annotateur</p></ul>
       <ul><p>Espace Validateur</p></ul>
