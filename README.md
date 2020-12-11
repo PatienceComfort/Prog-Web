@@ -19,17 +19,21 @@ inscriptionUti.php : contient le formulaire d'inscription de nouveaux utilisateu
   
   plan.php : affiche les fonctionalités du sites
   
-  Aboutus.html : affiche une page de presentation sur les créatrices du sites
+  aboutUs.html : affiche une page de presentation sur les créatrices du sites
   
   Rechercher les séquences et génomes :
   
    Recherche_seq.php Recherche_gen.php : contiennnt les formulaire de recherche des séquences et génome
    rech_sequence.php et rech_genome.php : permet de chercher dans la base et d'aaficher les resultats des requetes
-    
+
+   sortiecds.php, sortiepep.php, sortiefa.php : obtention des fichiers plats de sorties
+
    Genome.php Sequence.php : affichent tout le contenu/fiches disponibles dans les bases
   
    fiche.php : correspond à une fiche génome
    fihe2.php : correspond à une fiche de séquence
+
+   
   
   Attribuer les séquences par un validateur:
     attribuer.php : affiche l'ensemble des séquences qui n'ont pas d'annotateur,
@@ -46,6 +50,16 @@ inscriptionUti.php : contient le formulaire d'inscription de nouveaux utilisateu
       valider.php : afficher la sequence selectionnée et 2 boutons valider ou rejet 
         confirmValid.php : valide les annotations; met à jour la base annotations et transcrit
         rejetValid.php : rejette les annotations; met à jour la base annotations et transcrit
+  
+  Forum des annotateurs et des validateurs
+    ForumSujets.php : les sujets visibles par l'utilisateur
+    ForumDiscussions.php : la discussion liée à un sujet
+    sujet_form.php : création d'un nouveau sujet
+    reponse_form.php : création d'une nouvelle réponse à un sujet
+  
+  Gestion des utilisateurs :
+   admini.php : visualisation des utilisateurs de la base
+   validation_user.php, suppression_user.php : validation ou suppression des utilisateurs
         
           
   
