@@ -65,7 +65,7 @@ include 'connect_db.php'; ?>
 	<div class ="bottombar">
   		<li><a href="plan.php"> Plan du Site  </a> </li>
   		<li><a href="policy.php"> Conditions  </a> </li>
-  		<li><a href="About us.php"> Qui sommes nous ? </a> </li>
+  		<li><a href="aboutUs.php"> Qui sommes nous ? </a> </li>
   		<li><a href="Contact.php"> Nous contacter </a></li> 
 	</div> 
 
