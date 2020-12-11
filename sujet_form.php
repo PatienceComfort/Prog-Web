@@ -54,7 +54,7 @@ include 'connect_db.php';
 			//Acces au sujet du createur
 			$row = pg_fetch_row($res);
 			$id_Sujet = $row['0'];
-			echo $id_Sujet;
+			//echo $id_Sujet;
 			pg_query($db, "INSERT INTO genegate.accessujet (nomAnnot, idSujet) VALUES ('$id_utilisateur','$id_Sujet');");
             echo pg_last_error($db);
 			//Donner l'acces aux amis
