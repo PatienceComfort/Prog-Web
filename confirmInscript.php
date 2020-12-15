@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+<?php include 'connect_db.php';?>
 
 <?php
 
-  $db = pg_connect("host=localhost dbname=genegate port=5432  user=abirami  password=16011996") or die('connection failed');
+  //$db = pg_connect("host=localhost dbname=genegate port=5432  user=abirami  password=16011996") or die('connection failed');
 
   $username = $_POST['username'];
   $email = $_POST['email'];
