@@ -46,7 +46,7 @@ include 'connect_db.php';
             //Recuperation des informations
             $id_utilisateur = $_SESSION['username'];
             $timestamp = time();
-            $datetime = date("d-m-Y H:i:s",$timestamp);
+            $datetime = date("m-d-Y H:i:s",$timestamp);
 			$ForumSujet = $_GET['Titre'];
             //Insertion du nouveau sujet dans la base
             $res = pg_query($db,"INSERT INTO genegate.forum(idSujet,sujet,dateCreation,nomAnnot) VALUES(DEFAULT,'$ForumSujet','$datetime','$id_utilisateur') RETURNING idSujet;");

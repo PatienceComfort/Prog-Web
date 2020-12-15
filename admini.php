@@ -85,11 +85,10 @@ include 'connect_db.php';
         $infos = pg_query($db,"SELECT * FROM genegate.utilisateur WHERE validation_compte='t';");
         if(pg_num_rows($infos) > 0){//S'il y a des resultats
           while ($row = pg_fetch_assoc($infos) ){ //Affichage des utilisateurs non valides
-            $datetime = date("d-m-Y H:i:s",$row['dateConnexion']);
             echo "<tr><td>".$row['username']."</td>
                       <td>".$row['email']."</td>
                       <td>".$row['statut']."</td>
-                      <td>".$datetime."</td> 
+                      <td>".$row['dateconnexion']."</td> 
                       <td> <a href='suppression_user.php?id=".$row['username']."'> Supprimer </a> </td> 
                   </tr>";
           }

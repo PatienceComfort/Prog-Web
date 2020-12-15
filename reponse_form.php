@@ -51,7 +51,7 @@ include 'connect_db.php';
             $idSujet = $_GET['idSujet'];
             $text = $_GET['rep'];
             $timestamp = time();
-            $datetime = date("d-m-Y H:i:s",$timestamp);
+            $datetime = date("m-d-Y H:i:s",$timestamp);
             //Insertion de la reponse dans la base
             pg_query($db,"INSERT INTO genegate.reponse(idReponse,nomAnnot,response,dateReponse,idSujet) 
             VALUES(DEFAULT,'$id_utilisateur','$text','$datetime','$idSujet');");
