@@ -19,7 +19,7 @@ foreach($fasta_files as $fasta_file){
          //ajouter dans sql le cds precedent
          if ((strlen($seq) > 0) &&(strlen($id_cds))) {
             $seq = preg_replace('/\s+/', '', $seq);
-            $query_sql = pg_query($db,"UPDATE genome.transcrit SET seqProt = '$seq' WHERE idSeq = '$id_cds';"); 
+            $query_sql = pg_query($db,"UPDATE genegate.transcrit SET seqProt = '$seq' WHERE idSeq = '$id_cds';"); 
             echo "Update SQL \n";
          }
          $seq = ''; //Re initialisation de la sequence
