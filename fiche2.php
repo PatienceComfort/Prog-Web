@@ -65,6 +65,7 @@ include 'connect_db.php';
 		<tr><th> Genome ID </th><td><a href='fiche.php?id=".$row['idgenome']."'> ".$row['idgenome']."</a></td></tr>
 	    <tr><th> Biotype gene </th><td>".$row['biotypegene']."</td></tr>
 		<tr><th> Biotype transcrit </th><td>".$row['biotypetranscrit']."</td></tr>
+		<tr><th> Description </th><td>".$row['fonction']."</td></tr>
 		<tr><th> position début </th><td>".$row['pos_debut']."</td></tr>
 		<tr><th> position fin </th><td>".$row['pos_fin']."</td></tr>
 	    <tr><th> statut </th><td>".$row['annotee']."</td></tr>";
